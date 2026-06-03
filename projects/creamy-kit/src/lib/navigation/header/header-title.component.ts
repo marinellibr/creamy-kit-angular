@@ -15,7 +15,7 @@ import { HeaderBase } from './header-base.directive';
  * ```html
  * <creamy-kit-header-title title="Pedidos" back>
  *   <button actions>…</button>
- * </kit-header-title>
+ * </creamy-kit-header-title>
  * ```
  */
 @Component({

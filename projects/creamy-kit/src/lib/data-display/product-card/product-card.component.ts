@@ -34,7 +34,7 @@ import { TagComponent, TagColor } from '../tag/tag.component';
       <div class="product-card__media">
         <creamy-kit-image size="small" [path]="imagePath()" [alt]="title()" />
         @if (tagText()) {
-          <creamy-kit-tag class="product-card__tag" [color]="tagColor()">{{ tagText() }}</kit-tag>
+          <creamy-kit-tag class="product-card__tag" [color]="tagColor()">{{ tagText() }}</creamy-kit-tag>
         }
       </div>
 
@@ -44,7 +44,7 @@ import { TagComponent, TagColor } from '../tag/tag.component';
       </div>
 
       @if (buttonText()) {
-        <creamy-kit-button (click)="action.emit()">{{ buttonText() }}</kit-button>
+        <creamy-kit-button (click)="action.emit()">{{ buttonText() }}</creamy-kit-button>
       }
     </div>
   `,

@@ -30,7 +30,7 @@ export type AlertFeedback = 'information' | 'success' | 'error';
  *   linkText="Ver detalhes"
  *   linkHref="/pedidos/123">
  *   Seu pedido foi confirmado.
- * </kit-alert>
+ * </creamy-kit-alert>
  * ```
  */
 @Component({

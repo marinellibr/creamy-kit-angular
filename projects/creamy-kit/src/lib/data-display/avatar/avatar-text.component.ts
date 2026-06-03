@@ -24,7 +24,7 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
       [percentage]="percentage()"
     >
       {{ text() }}
-    </kit-avatar-shell>
+    </creamy-kit-avatar-shell>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

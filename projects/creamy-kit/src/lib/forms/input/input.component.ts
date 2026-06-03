@@ -32,7 +32,7 @@ export type InputVariant = 'default';
  *   [(ngModel)]="email"
  * >
  *   <svg icon>...</svg>
- * </kit-input>
+ * </creamy-kit-input>
  * ```
  */
 @Component({

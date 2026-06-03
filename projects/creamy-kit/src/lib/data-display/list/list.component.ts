@@ -11,7 +11,7 @@ import { ThemeService } from '../../core/theme.service';
  * <creamy-kit-list>
  *   <div>Item 1</div>
  *   <div>Item 2</div>
- * </kit-list>
+ * </creamy-kit-list>
  * ```
  */
 @Component({

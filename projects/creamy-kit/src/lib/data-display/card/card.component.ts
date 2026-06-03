@@ -13,7 +13,7 @@ import { ThemeService } from '../../core/theme.service';
  * ```html
  * <creamy-kit-card>
  *   <!-- conteúdo -->
- * </kit-card>
+ * </creamy-kit-card>
  * ```
  */
 @Component({

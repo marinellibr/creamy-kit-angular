@@ -37,7 +37,7 @@ import { BannerShellComponent } from './banner-shell.component';
         <span class="banner__tag-value">{{ tagValue() }}</span>
         <span class="banner__tag-label">{{ tagLabel() }}</span>
       </div>
-    </kit-banner-shell>
+    </creamy-kit-banner-shell>
   `,
   styleUrl: './banner-tag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

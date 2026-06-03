@@ -14,7 +14,7 @@ import { HeaderBase } from './header-base.directive';
  * ```html
  * <creamy-kit-header-profile title="Luiz Marinelli" subtitle="Premium" avatarSrc="foto.jpg">
  *   <button actions>…</button>
- * </kit-header-profile>
+ * </creamy-kit-header-profile>
  * ```
  */
 @Component({

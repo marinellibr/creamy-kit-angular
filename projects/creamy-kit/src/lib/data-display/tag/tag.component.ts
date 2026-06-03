@@ -17,7 +17,7 @@ export type TagColor = 'neutral' | 'primary' | 'success' | 'error' | 'alert';
  * Pequena etiqueta (pill) com o conteúdo projetado via `<ng-content>`.
  *
  * ```html
- * <creamy-kit-tag color="success">Pago</kit-tag>
+ * <creamy-kit-tag color="success">Pago</creamy-kit-tag>
  * ```
  */
 @Component({

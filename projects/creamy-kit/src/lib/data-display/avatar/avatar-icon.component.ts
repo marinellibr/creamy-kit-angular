@@ -33,7 +33,7 @@ const ICON_PX: Record<AvatarSize, number> = {
       [percentage]="percentage()"
     >
       <creamy-kit-icon [name]="name()" [size]="iconPx()" color="currentColor" />
-    </kit-avatar-shell>
+    </creamy-kit-avatar-shell>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

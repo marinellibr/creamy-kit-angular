@@ -35,7 +35,7 @@ export type SearchVariant = 'default' | 'on-brand';
  * ```html
  * <creamy-kit-search placeholder="Buscar…" [(ngModel)]="termo">
  *   <svg iconRight>…</svg>
- * </kit-search>
+ * </creamy-kit-search>
  * ```
  */
 @Component({

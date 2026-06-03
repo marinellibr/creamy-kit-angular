@@ -29,7 +29,7 @@ import { BannerShellComponent } from './banner-shell.component';
       [disabled]="disabled()"
     >
       <span trailing class="banner__chevron" aria-hidden="true"></span>
-    </kit-banner-shell>
+    </creamy-kit-banner-shell>
   `,
   styleUrl: './banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

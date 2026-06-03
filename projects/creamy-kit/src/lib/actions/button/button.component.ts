@@ -42,7 +42,7 @@ export type ButtonContrast =
  * ```html
  * <creamy-kit-button>
  *   Salvar
- * </kit-button>
+ * </creamy-kit-button>
  * ```
  *
  * ## Outline
@@ -50,7 +50,7 @@ export type ButtonContrast =
  * ```html
  * <creamy-kit-button appearance="outline">
  *   Cancelar
- * </kit-button>
+ * </creamy-kit-button>
  * ```
  *
  * ## On Brand
@@ -58,7 +58,7 @@ export type ButtonContrast =
  * ```html
  * <creamy-kit-button contrast="on-brand">
  *   Comprar
- * </kit-button>
+ * </creamy-kit-button>
  * ```
  *
  * ## Outline + On Brand
@@ -68,7 +68,7 @@ export type ButtonContrast =
  *   appearance="outline"
  *   contrast="on-brand">
  *   Continuar
- * </kit-button>
+ * </creamy-kit-button>
  * ```
  */
 @Component({

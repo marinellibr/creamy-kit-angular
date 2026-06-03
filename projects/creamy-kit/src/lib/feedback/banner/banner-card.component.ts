@@ -38,7 +38,7 @@ import { BannerShellComponent } from './banner-shell.component';
           <creamy-kit-icon [name]="trailingIconName()" [size]="20" color="currentColor" />
         </span>
       }
-    </kit-banner-shell>
+    </creamy-kit-banner-shell>
   `,
   styleUrl: './banner-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

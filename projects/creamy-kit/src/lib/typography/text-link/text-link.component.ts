@@ -11,7 +11,7 @@ import { ThemeService } from '../../core/theme.service';
  * Link de texto sublinhado, com o rótulo projetado via `<ng-content>`.
  *
  * ```html
- * <creamy-kit-text-link href="/termos">Termos de uso</kit-text-link>
+ * <creamy-kit-text-link href="/termos">Termos de uso</creamy-kit-text-link>
  * ```
  */
 @Component({
