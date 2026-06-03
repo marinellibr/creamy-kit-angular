@@ -1,1 +1,19 @@
-<p>loading works!</p>
+<div class="kit-loading" [class]="'kit-loading--' + size() + ' kit-loading--' + variant()">
+  <div class="kit-loading__spinner">
+    <svg
+      class="kit-loading__svg"
+      viewBox="0 0 50 50"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        class="kit-loading__circle"
+        cx="25"
+        cy="25"
+        r="20"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  </div>
+</div>
