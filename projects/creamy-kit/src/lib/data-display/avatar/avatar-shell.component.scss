@@ -1,0 +1,90 @@
+:host {
+  display: inline-flex;
+}
+
+.avatar {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.avatar__content {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--kit-avatar-bg);
+  color: var(--kit-avatar-fg);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* Imagem preenche o círculo: sem fundo. */
+:host([data-surface='transparent']) .avatar__content {
+  background-color: transparent;
+}
+
+/* Tamanhos (e largura do anel de progresso). */
+:host([data-size='small']) .avatar {
+  width: 24px;
+  height: 24px;
+  font-size: 0.625rem;
+  --kit-avatar-ring-width: 1px;
+}
+
+:host([data-size='medium']) .avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem;
+  --kit-avatar-ring-width: 2px;
+}
+
+:host([data-size='large']) .avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1rem;
+  --kit-avatar-ring-width: 4px;
+}
+
+/* Contrastes — fundo + conteúdo, reutilizados no círculo e no anel. */
+:host([data-contrast='dark']) .avatar {
+  --kit-avatar-bg: var(--neutral-base);
+  --kit-avatar-fg: var(--primary-contrast);
+}
+
+:host([data-contrast='light']) .avatar {
+  --kit-avatar-bg: var(--primary-contrast);
+  --kit-avatar-fg: var(--neutral-base);
+}
+
+:host([data-contrast='variant']) .avatar {
+  --kit-avatar-bg: var(--primary-base);
+  --kit-avatar-fg: var(--primary-contrast);
+}
+
+:host([data-contrast='on-brand']) .avatar {
+  --kit-avatar-bg: var(--primary-contrast);
+  --kit-avatar-fg: var(--primary-base);
+}
+
+/* Anel de progresso (percentage > 0). */
+:host([data-ring]) .avatar {
+  padding: var(--kit-avatar-ring-width);
+  background: conic-gradient(
+    from 180deg,
+    var(--kit-avatar-fg) var(--kit-avatar-progress, 0%),
+    var(--kit-avatar-bg) 0
+  );
+}

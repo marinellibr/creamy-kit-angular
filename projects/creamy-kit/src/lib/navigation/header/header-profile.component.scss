@@ -1,0 +1,27 @@
+@use './header-base' as header;
+
+@include header.base();
+
+.header__avatar {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.header__profile {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--kit-header-fg);
+}
+
+.header__subtitle {
+  font-size: 13px;
+  color: var(--kit-header-fg-2);
+}

@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.banner__trailing {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  color: var(--kit-banner-trailing);
+}

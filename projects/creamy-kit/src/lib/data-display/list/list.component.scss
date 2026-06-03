@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  /* Linha sutil entre os itens projetados. */
+  ::ng-deep > * + * {
+    border-top: 1px solid var(--border-soft);
+  }
+}

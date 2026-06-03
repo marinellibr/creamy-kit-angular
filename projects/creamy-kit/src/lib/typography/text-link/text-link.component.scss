@@ -1,0 +1,14 @@
+:host {
+  display: inline;
+}
+
+.text-link {
+  color: var(--text-link);
+  font-weight: 400;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-highlight);
+  }
+}

@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './radio.component.html',
-  styleUrl: './radio.component.css'
+  styleUrl: './radio.component.scss',
 })
-export class RadioComponent {
-
-}
+export class RadioComponent {}

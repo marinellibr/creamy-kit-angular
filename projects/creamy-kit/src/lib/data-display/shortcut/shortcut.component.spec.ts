@@ -8,12 +8,12 @@ describe('ShortcutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShortcutComponent]
-    })
-    .compileComponents();
+      imports: [ShortcutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShortcutComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

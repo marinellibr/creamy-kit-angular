@@ -8,12 +8,12 @@ describe('SheetsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SheetsComponent]
-    })
-    .compileComponents();
+      imports: [SheetsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SheetsComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

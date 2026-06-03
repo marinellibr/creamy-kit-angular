@@ -8,12 +8,12 @@ describe('SwitchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SwitchComponent]
-    })
-    .compileComponents();
+      imports: [SwitchComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SwitchComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

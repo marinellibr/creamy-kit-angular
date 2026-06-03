@@ -1,0 +1,11 @@
+@use './header-base' as header;
+
+@include header.base();
+
+.header__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--kit-header-fg);
+}

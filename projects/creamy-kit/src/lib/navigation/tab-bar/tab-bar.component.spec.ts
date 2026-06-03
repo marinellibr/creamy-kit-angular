@@ -8,12 +8,12 @@ describe('TabBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TabBarComponent]
-    })
-    .compileComponents();
+      imports: [TabBarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TabBarComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

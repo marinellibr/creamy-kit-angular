@@ -1,0 +1,12 @@
+@use '../../core/icons' as icons;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Chevron à direita (consumido do creamy-kit-resources via mask). */
+.banner__chevron {
+  @include icons.chevron-right(16px);
+  color: var(--kit-banner-trailing);
+}

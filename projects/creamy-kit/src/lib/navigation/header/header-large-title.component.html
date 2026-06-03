@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="header__row">
+    @if (back()) {
+      <button type="button" class="header__back" aria-label="Voltar" (click)="backClick.emit()">
+        <kit-icon name="arrow_left" [size]="20" color="currentColor" ariaLabel="" />
+      </button>
+    }
+
+    <span class="header__spacer"></span>
+
+    <div class="header__actions"><ng-content select="[actions]" /></div>
+  </div>
+
+  <div class="header__titles">
+    @if (subtitle()) {
+      <span class="header__overline">{{ subtitle() }}</span>
+    }
+    <span class="header__large">{{ title() }}</span>
+  </div>
+</header>

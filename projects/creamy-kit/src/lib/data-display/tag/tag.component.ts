@@ -1,12 +1,40 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  input,
+} from '@angular/core';
+import { ThemeService } from '../../core/theme.service';
 
+/**
+ * Cor (semântica) da Tag.
+ */
+export type TagColor = 'neutral' | 'primary' | 'success' | 'error' | 'alert';
+
+/**
+ * Componente de Tag do Creamy Kit.
+ *
+ * Pequena etiqueta (pill) com o conteúdo projetado via `<ng-content>`.
+ *
+ * ```html
+ * <kit-tag color="success">Pago</kit-tag>
+ * ```
+ */
 @Component({
   selector: 'kit-tag',
   standalone: true,
   imports: [],
-  templateUrl: './tag.component.html',
-  styleUrl: './tag.component.css'
+  template: `<span class="tag"><ng-content /></span>`,
+  styleUrl: './tag.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagComponent {
+  constructor(private readonly themeService: ThemeService) {}
 
+  /** Cor semântica. @default 'neutral' */
+  readonly color = input<TagColor>('neutral');
+
+  @HostBinding('attr.data-color') get hostColor() {
+    return this.color();
+  }
 }

@@ -1,1 +1,20 @@
-<p>checkbox works!</p>
+@for (opt of options(); track opt.value) {
+  <button
+    type="button"
+    class="checkbox__row"
+    role="checkbox"
+    [attr.aria-checked]="isSelected(opt)"
+    (click)="toggle(opt)"
+  >
+    <span
+      class="checkbox__box"
+      [class.checkbox__box--checked]="isSelected(opt)"
+      aria-hidden="true"
+    ></span>
+    <span class="checkbox__label">{{ opt.label }}</span>
+  </button>
+
+  @if (divider()) {
+    <kit-divider weight="2px" color="border-medium" />
+  }
+}

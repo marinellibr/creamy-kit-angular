@@ -8,12 +8,12 @@ describe('RadioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RadioComponent]
-    })
-    .compileComponents();
+      imports: [RadioComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RadioComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

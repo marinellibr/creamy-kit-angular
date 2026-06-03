@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './progress.component.html',
-  styleUrl: './progress.component.css'
+  styleUrl: './progress.component.scss',
 })
-export class ProgressComponent {
-
-}
+export class ProgressComponent {}

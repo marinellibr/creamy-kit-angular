@@ -1,0 +1,68 @@
+// Tema + faixa compartilhados pelas variações de Header.
+// Cada componente faz `@use './header-base' as header; @include header.base();`
+
+@mixin base {
+  :host {
+    display: block;
+    width: 100%;
+  }
+
+  /* Tema brand (padrão). */
+  :host,
+  :host([data-theme='brand']) {
+    --kit-header-bg: var(--primary-base);
+    --kit-header-fg: var(--primary-contrast);
+    --kit-header-fg-2: var(--primary-contrast);
+  }
+
+  /* Tema light. */
+  :host([data-theme='light']) {
+    --kit-header-bg: var(--background-base);
+    --kit-header-fg: var(--text-heading);
+    --kit-header-fg-2: var(--text-body-2);
+  }
+
+  .header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    background-color: var(--kit-header-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Botão de voltar. */
+  .header__back {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--kit-header-fg);
+    cursor: pointer;
+  }
+
+  /* Ações à direita. */
+  .header__actions {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--kit-header-fg);
+  }
+
+  .header__spacer {
+    flex: 1 1 auto;
+  }
+}

@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './switch.component.html',
-  styleUrl: './switch.component.css'
+  styleUrl: './switch.component.scss',
 })
-export class SwitchComponent {
-
-}
+export class SwitchComponent {}

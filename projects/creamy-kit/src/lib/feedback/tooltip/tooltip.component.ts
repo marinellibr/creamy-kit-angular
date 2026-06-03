@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './tooltip.component.html',
-  styleUrl: './tooltip.component.css'
+  styleUrl: './tooltip.component.scss',
 })
-export class TooltipComponent {
-
-}
+export class TooltipComponent {}

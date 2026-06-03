@@ -8,12 +8,12 @@ describe('TextLinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextLinkComponent]
-    })
-    .compileComponents();
+      imports: [TextLinkComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TextLinkComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

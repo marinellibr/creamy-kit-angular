@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="header__row">
+    <kit-avatar-image
+      class="header__avatar"
+      [src]="avatarSrc()"
+      alt="Perfil"
+      size="large"
+      (click)="avatarClick.emit()"
+    />
+
+    <div class="header__profile">
+      <span class="header__name">{{ title() }}</span>
+      @if (subtitle()) {
+        <span class="header__subtitle">{{ subtitle() }}</span>
+      }
+    </div>
+
+    <div class="header__actions"><ng-content select="[actions]" /></div>
+  </div>
+</header>

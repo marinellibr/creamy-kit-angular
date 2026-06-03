@@ -1,0 +1,37 @@
+@use '../../core/icons' as icons;
+
+:host {
+  display: block;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Texto clicável — Poppins 14px, Action/neutral/base. */
+.breadcrumb__item {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--neutral-base);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Chevron à direita entre os itens: 4px à esquerda, 8px à direita. */
+/* Chevron consumido do creamy-kit-resources (via mask). */
+.breadcrumb__sep {
+  @include icons.chevron-right(16px);
+  margin-left: 4px;
+  margin-right: 8px;
+  color: var(--neutral-base);
+}

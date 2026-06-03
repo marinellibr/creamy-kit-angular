@@ -1,0 +1,32 @@
+:host {
+  display: inline-flex;
+}
+
+.shortcut {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-body);
+}
+
+.shortcut__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: var(--background-variant);
+  color: var(--primary-base);
+}
+
+.shortcut__label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-body-2);
+}

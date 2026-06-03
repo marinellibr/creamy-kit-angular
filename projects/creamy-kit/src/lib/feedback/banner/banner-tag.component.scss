@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.banner__tag {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: right;
+  gap: 2px;
+}
+
+.banner__tag-value {
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--feedbacks-alert-contrast);
+}
+
+.banner__tag-label {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--text-body-2);
+}
