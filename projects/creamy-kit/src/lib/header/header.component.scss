@@ -1,0 +1,121 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Tema brand (padrão): fundo da marca, conteúdo branco. */
+:host,
+:host([data-theme="brand"]) {
+  --kit-header-bg: var(--primary-base);
+  --kit-header-fg: var(--primary-contrast);
+  --kit-header-fg-2: var(--primary-contrast);
+}
+
+/* Tema light: fundo claro, conteúdo escuro. */
+:host([data-theme="light"]) {
+  --kit-header-bg: var(--background-base);
+  --kit-header-fg: var(--text-heading);
+  --kit-header-fg-2: var(--text-body-2);
+}
+
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  background-color: var(--kit-header-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Botão de voltar (chevron para a esquerda). */
+.header__back {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--kit-header-fg);
+  cursor: pointer;
+}
+
+.header__avatar {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.header__search {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Espaçador para empurrar as ações à direita. */
+.header__spacer {
+  flex: 1 1 auto;
+}
+
+/* Título em linha (type="title"). */
+.header__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--kit-header-fg);
+}
+
+/* Bloco de perfil (type="profile"). */
+.header__profile {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--kit-header-fg);
+}
+
+.header__subtitle {
+  font-size: 13px;
+  color: var(--kit-header-fg-2);
+}
+
+/* Bloco de títulos (type="large-title"). */
+.header__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__overline {
+  font-size: 13px;
+  color: var(--kit-header-fg-2);
+}
+
+.header__large {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--kit-header-fg);
+}
+
+/* Ações à direita (ícones projetados). */
+.header__actions {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kit-header-fg);
+}

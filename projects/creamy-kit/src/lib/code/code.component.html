@@ -1,0 +1,23 @@
+<div class="code">
+  @if (title()) {
+    <span class="code__title">{{ title() }}</span>
+  }
+
+  <div class="code__fields">
+    @for (i of indexes(); track i) {
+      <input
+        #box
+        class="code__field"
+        type="text"
+        inputmode="text"
+        autocomplete="off"
+        maxlength="1"
+        [value]="charAt(i)"
+        (input)="onInput($event, i)"
+        (keydown)="onKeydown($event, i)"
+        (paste)="onPaste($event)"
+        (blur)="onBlur()"
+      />
+    }
+  </div>
+</div>

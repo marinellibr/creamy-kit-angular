@@ -1,0 +1,10 @@
+<nav class="breadcrumb" aria-label="breadcrumb">
+  @for (item of items(); track $index; let i = $index) {
+    @if (i > 0) {
+      <span class="breadcrumb__sep" aria-hidden="true"></span>
+    }
+    <button type="button" class="breadcrumb__item" (click)="onItemClick(i)">
+      {{ item }}
+    </button>
+  }
+</nav>

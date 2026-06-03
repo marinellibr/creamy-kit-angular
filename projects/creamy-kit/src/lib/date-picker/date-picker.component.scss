@@ -1,0 +1,80 @@
+:host {
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+}
+
+.datepicker {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-base);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Calendário embutido ocupa toda a largura do diálogo. */
+.datepicker kit-calendar {
+  max-width: none;
+  width: 100%;
+}
+
+/* * * * Cabeçalho * * * */
+.datepicker__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.datepicker__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.datepicker__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.datepicker__desc {
+  font-size: 13px;
+  color: var(--text-body-2);
+}
+
+.datepicker__close {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-heading);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: var(--text-body);
+  }
+}
+
+/* * * * Ações * * * */
+.datepicker__actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+}
+
+.datepicker__action {
+  flex: 1;
+}

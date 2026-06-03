@@ -1,0 +1,203 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.dropdown__title {
+  font-size: 16px;
+  font-weight: 500; /* Poppins medium */
+  color: var(--text-heading-2);
+}
+
+/* Posiciona o menu logo abaixo do controle. */
+.dropdown__field {
+  position: relative;
+  width: 100%;
+}
+
+/* Trigger — mesma caixa do Input. */
+.dropdown__control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box; /* padding não interfere no width: 100% */
+  min-height: 48px;
+  padding: 12px;
+  background-color: var(--primary-contrast);
+  border: none; /* remove a borda padrão do <button> (UA) */
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  /* Borda via inset box-shadow: não altera o layout ao mudar de 1px → 2px. */
+  box-shadow: inset 0 0 0 1px var(--border-medium);
+}
+
+.dropdown__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--placeholder {
+    color: var(--disabled-base);
+  }
+}
+
+/* Chevron à direita, 24px, gira ao abrir. */
+.dropdown__chevron {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--disabled-base);
+  transition: transform 0.15s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+}
+
+/* Menu de opções. */
+.dropdown__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background-color: var(--primary-contrast);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.dropdown__option {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-body);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--background-variant);
+  }
+
+  &--selected {
+    color: var(--primary-base);
+    font-weight: 500;
+  }
+}
+
+/* Helper opcional abaixo. */
+.dropdown__helper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 400; /* Poppins regular */
+  color: var(--text-heading-2);
+}
+
+.dropdown__helper-icon {
+  flex: 0 0 auto;
+}
+
+/* * * * * * * * * *
+ * Estados
+ * * * * * * * * * */
+
+/* Erro — borda e helper na cor de erro. */
+:host([data-error]) .dropdown__control {
+  box-shadow: inset 0 0 0 1px var(--feedbacks-error);
+}
+
+:host([data-error]) .dropdown__helper {
+  color: var(--feedbacks-error);
+}
+
+/* Foco/aberto — borda 2px Background/primary (vence o erro por vir depois). */
+:host .dropdown__control:focus-visible,
+:host([data-open]) .dropdown__control {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+/* Chevron girado quando aberto. */
+:host([data-open]) .dropdown__chevron {
+  transform: rotate(180deg);
+}
+
+/* Desabilitado — fundo Action/disabled/base. */
+:host([data-disabled]) .dropdown__control {
+  background-color: var(--disabled-base);
+  cursor: not-allowed;
+}
+
+:host([data-disabled]) .dropdown__value--placeholder {
+  color: var(--disabled-variant);
+}
+
+/* * * * * * * * * *
+ * Variação on-brand — fundo transparente; borda, textos e ícones sempre
+ * em Action/primary/contrast (inclusive desabilitado).
+ * * * * * * * * * */
+:host([data-variant="on-brand"]) .dropdown__title,
+:host([data-variant="on-brand"]) .dropdown__helper {
+  color: var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"]) .dropdown__control {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"]) .dropdown__value,
+:host([data-variant="on-brand"]) .dropdown__value--placeholder,
+:host([data-variant="on-brand"]) .dropdown__chevron {
+  color: var(--primary-contrast);
+}
+
+/* Foco/aberto — mantém a cor, engrossa para 2px. */
+:host([data-variant="on-brand"]) .dropdown__control:focus-visible,
+:host([data-variant="on-brand"][data-open]) .dropdown__control {
+  box-shadow: inset 0 0 0 2px var(--primary-contrast);
+}
+
+/* Erro — borda sempre primary-contrast. */
+:host([data-variant="on-brand"][data-error]) .dropdown__control {
+  box-shadow: inset 0 0 0 1px var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"][data-error]) .dropdown__helper {
+  color: var(--primary-contrast);
+}
+
+/* Desabilitado — mesma cor (transparente + primary-contrast). */
+:host([data-variant="on-brand"][data-disabled]) .dropdown__control {
+  background-color: transparent;
+}
+
+:host([data-variant="on-brand"][data-disabled]) .dropdown__value--placeholder {
+  color: var(--primary-contrast);
+}

@@ -1,0 +1,35 @@
+<div class="banner">
+  <span class="banner__icon" aria-hidden="true" [style.color]="iconColorCss()">
+    @if (iconName()) {
+      <kit-icon [name]="iconName()" [size]="iconSizePx()" [color]="iconColorCss()" />
+    } @else {
+      <ng-content select="[icon]" />
+    }
+  </span>
+
+  <div class="banner__body">
+    @if (title()) {
+      <strong class="banner__title">{{ title() }}</strong>
+    }
+    @if (description()) {
+      <span class="banner__description">{{ description() }}</span>
+    }
+  </div>
+
+  @if (type() === 'tag') {
+    <div class="banner__tag">
+      <span class="banner__tag-value">{{ tagValue() }}</span>
+      <span class="banner__tag-label">{{ tagLabel() }}</span>
+    </div>
+  } @else if (type() === 'card') {
+    <span class="banner__trailing">
+      @if (trailingIconName()) {
+        <kit-icon [name]="trailingIconName()" [size]="20" color="currentColor" />
+      } @else {
+        <ng-content select="[trailing]" />
+      }
+    </span>
+  } @else {
+    <span class="banner__chevron" aria-hidden="true"></span>
+  }
+</div>

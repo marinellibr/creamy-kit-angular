@@ -1,0 +1,135 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Caixa — mesma do Input (gap 8px separa ícones e texto). */
+.search__control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 12px;
+  background-color: var(--primary-contrast);
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px var(--border-medium);
+}
+
+.search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-body);
+  padding: 0;
+
+  &::placeholder {
+    color: var(--disabled-base);
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+/* Ícones 24px (esquerda e direita). */
+.search__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--disabled-base);
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  ::ng-deep svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Botão de limpar (X) — substitui o ícone da direita ao focar. */
+.search__clear {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--disabled-base);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-body);
+  }
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Foco — borda 2px Background/primary. */
+:host .search__control:focus-within {
+  box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+/* * * * * * * * * *
+ * Versão small — altura 40px, ícones 16px
+ * * * * * * * * * */
+:host([data-small]) .search__control {
+  min-height: 40px;
+}
+
+:host([data-small]) .search__icon,
+:host([data-small]) .search__clear {
+  width: 16px;
+  height: 16px;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  ::ng-deep svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* * * * * * * * * *
+ * Variação on-brand — fundo transparente; borda, texto e ícones sempre
+ * em Action/primary/contrast.
+ * * * * * * * * * */
+:host([data-variant="on-brand"]) .search__control {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"]) .search__input,
+:host([data-variant="on-brand"]) .search__icon,
+:host([data-variant="on-brand"]) .search__clear {
+  color: var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"]) .search__input::placeholder {
+  color: var(--primary-contrast);
+}
+
+:host([data-variant="on-brand"]) .search__control:focus-within {
+  box-shadow: inset 0 0 0 2px var(--primary-contrast);
+}

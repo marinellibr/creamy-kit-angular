@@ -1,0 +1,36 @@
+:host {
+  display: inline-flex;
+}
+
+.button {
+  width: 100%;
+  height: 48px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+:host([data-appearance="solid"]) .button {
+  background: var(--primary-base);
+  color: var(--primary-contrast);
+}
+
+:host([data-appearance="outline"]) .button {
+  background: transparent;
+  border: 1px solid var(--secondary-variant);
+  color: var(--secondary-variant);
+}
+
+:host([data-contrast="on-brand"][data-appearance="solid"]) .button {
+  background: var(--primary-contrast);
+  color: var(--primary-base);
+}
+
+:host([data-contrast="on-brand"][data-appearance="outline"]) .button {
+  border-color: var(--primary-contrast);
+  color: var(--primary-contrast);
+}

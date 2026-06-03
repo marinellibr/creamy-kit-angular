@@ -1,0 +1,73 @@
+<div class="dropdown">
+  @if (title()) {
+    <span class="dropdown__title">{{ title() }}</span>
+  }
+
+  <div class="dropdown__field">
+    <button
+      type="button"
+      class="dropdown__control"
+      [disabled]="isDisabled()"
+      (click)="toggle()"
+    >
+      <span
+        class="dropdown__value"
+        [class.dropdown__value--placeholder]="!selectedLabel()"
+      >
+        {{ selectedLabel() || placeholder() }}
+      </span>
+      <span class="dropdown__chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M4 6l4 4 4-4"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </button>
+
+    @if (open()) {
+      <ul class="dropdown__menu" role="listbox">
+        @for (opt of options(); track opt.value) {
+          <li
+            class="dropdown__option"
+            role="option"
+            [attr.aria-selected]="opt.value === value()"
+            [class.dropdown__option--selected]="opt.value === value()"
+            (click)="select(opt)"
+          >
+            {{ opt.label }}
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+  @if (helper()) {
+    <span class="dropdown__helper">
+      @if (error()) {
+        <svg
+          class="dropdown__helper-icon"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5" />
+          <path
+            d="M8 5v3.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <circle cx="8" cy="11" r="0.9" fill="currentColor" />
+        </svg>
+      }
+      {{ helper() }}
+    </span>
+  }
+</div>

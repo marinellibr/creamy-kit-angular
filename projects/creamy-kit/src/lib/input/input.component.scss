@@ -1,0 +1,112 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Campo completo: título (4px) + controle + helper (4px). */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.field__title {
+  font-size: 16px;
+  font-weight: 500; /* Poppins medium */
+  color: var(--text-heading-2);
+}
+
+/* Caixa do input — carrega borda/fundo/raio e o ícone. */
+.field__control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box; /* padding não interfere no width: 100% */
+  min-height: 48px;
+  padding: 12px;
+  background-color: var(--primary-contrast);
+  border-radius: 20px;
+  /* Borda via inset box-shadow: não altera o layout ao mudar de 1px → 2px,
+     evitando que o conteúdo "pule" ao focar. */
+  box-shadow: inset 0 0 0 1px var(--border-medium);
+}
+
+.field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-body);
+  padding: 0;
+
+  &::placeholder {
+    color: var(--disabled-base);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Placeholder do campo desabilitado — Action/disabled/variant. */
+  &:disabled::placeholder {
+    color: var(--disabled-variant);
+  }
+}
+
+/* Ícone opcional à direita, 24px, centralizado verticalmente. */
+.field__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  color: var(--disabled-base);
+
+  ::ng-deep svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Helper opcional abaixo. */
+.field__helper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 400; /* Poppins regular */
+  color: var(--text-heading-2);
+}
+
+.field__helper-icon {
+  flex: 0 0 auto;
+}
+
+/* * * * * * * * * *
+ * Estados
+ * * * * * * * * * */
+
+/* Foco — borda 2px primary (vem depois do erro p/ vencer na sobreposição). */
+:host([data-error]) .field__control {
+  box-shadow: inset 0 0 0 1px var(--feedbacks-error);
+}
+
+:host([data-error]) .field__helper {
+  color: var(--feedbacks-error);
+}
+
+:host .field__control:focus-within {
+  box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+/* Desabilitado — fundo Action/disabled/base. */
+:host([data-disabled]) .field__control {
+  background-color: var(--disabled-base);
+}

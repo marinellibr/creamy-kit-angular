@@ -1,0 +1,111 @@
+:host {
+  display: inline-flex;
+}
+
+.avatar {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Círculo interno: contém o conteúdo (ícone, texto ou imagem). */
+.avatar__content {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--kit-avatar-bg);
+  color: var(--kit-avatar-fg);
+
+  /* Imagem ocupa 100% do círculo */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* * * * * * * * * *
+ * Tamanhos (e largura do anel de progresso)
+ * * * * * * * * * */
+:host([data-size="small"]) .avatar {
+  width: 24px;
+  height: 24px;
+  font-size: 0.625rem; /* ~10px */
+  --kit-avatar-ring-width: 1px;
+}
+
+:host([data-size="medium"]) .avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem; /* ~12px */
+  --kit-avatar-ring-width: 2px;
+}
+
+:host([data-size="large"]) .avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1rem;
+  --kit-avatar-ring-width: 4px;
+}
+
+/* * * * * * * * * *
+ * Contrastes — definem as cores de fundo e de conteúdo,
+ * reutilizadas tanto no círculo quanto no anel.
+ * * * * * * * * * */
+
+/* dark (padrão): fundo neutral-base, conteúdo primary-contrast */
+:host([data-contrast="dark"]) .avatar {
+  --kit-avatar-bg: var(--neutral-base);
+  --kit-avatar-fg: var(--primary-contrast);
+}
+
+/* light: fundo primary-contrast, conteúdo neutral-base */
+:host([data-contrast="light"]) .avatar {
+  --kit-avatar-bg: var(--primary-contrast);
+  --kit-avatar-fg: var(--neutral-base);
+}
+
+/* variant: fundo primary-base, conteúdo primary-contrast */
+:host([data-contrast="variant"]) .avatar {
+  --kit-avatar-bg: var(--primary-base);
+  --kit-avatar-fg: var(--primary-contrast);
+}
+
+/* on-brand: variant invertido — fundo primary-contrast, conteúdo primary-base */
+:host([data-contrast="on-brand"]) .avatar {
+  --kit-avatar-bg: var(--primary-contrast);
+  --kit-avatar-fg: var(--primary-base);
+}
+
+/* Variant image: conteúdo sem background (a imagem preenche tudo) */
+:host([data-variant="image"]) .avatar__content {
+  background-color: transparent;
+}
+
+/* * * * * * * * * *
+ * Anel de progresso (percentage > 0)
+ *
+ * O conic-gradient preenche toda a área do `.avatar`; o `.avatar__content`
+ * cobre o centro, deixando visível apenas o anel (= padding). A parte da
+ * porcentagem usa a cor do texto/ícone; o restante, a cor de fundo.
+ * * * * * * * * * */
+:host([data-ring]) .avatar {
+  padding: var(--kit-avatar-ring-width);
+  /* Começa na parte de baixo (from 180deg). O preenchimento (porcentagem)
+     usa a cor do texto/ícone e o restante (trilho), a cor de fundo. */
+  background:
+    conic-gradient(
+      from 180deg,
+      var(--kit-avatar-fg) var(--kit-avatar-progress, 0%),
+      var(--kit-avatar-bg) 0
+    );
+}

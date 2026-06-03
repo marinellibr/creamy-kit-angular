@@ -1,0 +1,5 @@
+<div class="image">
+  @if (path() && !errored()) {
+    <img [src]="path()" [alt]="alt()" (error)="onError()" />
+  }
+</div>

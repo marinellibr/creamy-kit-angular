@@ -1,0 +1,42 @@
+{
+  "folders": [
+    { "path": "." }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#E53935",
+      "titleBar.activeForeground": "#FFFFFF",
+      "titleBar.inactiveBackground": "#C62828",
+      "titleBar.inactiveForeground": "#FFFFFF99",
+      "activityBar.background": "#E53935",
+      "activityBar.foreground": "#FFFFFF",
+      "activityBar.inactiveForeground": "#FFFFFF66",
+      "statusBar.background": "#E53935",
+      "statusBar.foreground": "#FFFFFF",
+      "statusBarItem.hoverBackground": "#EF5350"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "angular.ng-template",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint"
+    ]
+  },
+  "launch": {
+    "configurations": [
+      {
+        "name": "Build creamy-kit-angular",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run", "build"],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+}

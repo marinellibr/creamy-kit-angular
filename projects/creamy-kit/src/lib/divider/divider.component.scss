@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.divider {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-top-style: solid;
+  border-top-width: var(--kit-divider-weight, 2px);
+  border-top-color: var(--kit-divider-color, var(--border-medium));
+  margin: 0;
+}
+
+/* * * * * * * * * *
+ * Espessuras
+ * * * * * * * * * */
+:host([data-weight="2px"]) { --kit-divider-weight: 2px; }
+:host([data-weight="3px"]) { --kit-divider-weight: 3px; }
+:host([data-weight="4px"]) { --kit-divider-weight: 4px; }
+
+/* * * * * * * * * *
+ * Cores
+ * * * * * * * * * */
+:host([data-color="border-soft"])   { --kit-divider-color: var(--border-soft); }
+:host([data-color="border-medium"]) { --kit-divider-color: var(--border-medium); }
+:host([data-color="border-strong"]) { --kit-divider-color: var(--border-strong); }
+:host([data-color="primary"])       { --kit-divider-color: var(--primary-base); }
+:host([data-color="error"])         { --kit-divider-color: var(--feedbacks-error); }

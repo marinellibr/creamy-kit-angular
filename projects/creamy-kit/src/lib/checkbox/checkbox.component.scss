@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Linha clicável: quadrado + label. */
+.checkbox__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+/* Quadrado — Action/neutral/base, vira primary/base ao marcar. */
+.checkbox__box {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background-color: var(--neutral-base);
+  transition: background-color 0.12s ease;
+
+  &--checked {
+    background-color: var(--primary-base);
+  }
+}
+
+.checkbox__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--text-body);
+}

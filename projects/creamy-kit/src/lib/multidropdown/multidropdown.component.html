@@ -1,0 +1,69 @@
+<div class="multidropdown">
+  @if (title()) {
+    <span class="multidropdown__title">{{ title() }}</span>
+  }
+
+  <div class="multidropdown__field">
+    <button
+      type="button"
+      class="multidropdown__control"
+      [disabled]="isDisabled()"
+      (click)="toggleMenu()"
+    >
+      <span
+        class="multidropdown__value"
+        [class.multidropdown__value--placeholder]="!selectedLabels()"
+      >
+        {{ selectedLabels() || placeholder() }}
+      </span>
+      <span class="multidropdown__chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M4 6l4 4 4-4"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+    </button>
+
+    @if (open()) {
+      <ul class="multidropdown__menu" role="listbox" aria-multiselectable="true">
+        @for (opt of options(); track opt.value) {
+          <li
+            class="multidropdown__option"
+            role="option"
+            [attr.aria-selected]="isSelected(opt)"
+            [class.multidropdown__option--selected]="isSelected(opt)"
+            (click)="toggleOption(opt)"
+          >
+            <span class="multidropdown__check" aria-hidden="true"></span>
+            <span class="multidropdown__label">{{ opt.label }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+
+  @if (helper()) {
+    <span class="multidropdown__helper">
+      @if (error()) {
+        <svg
+          class="multidropdown__helper-icon"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5" />
+          <path d="M8 5v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <circle cx="8" cy="11" r="0.9" fill="currentColor" />
+        </svg>
+      }
+      {{ helper() }}
+    </span>
+  }
+</div>

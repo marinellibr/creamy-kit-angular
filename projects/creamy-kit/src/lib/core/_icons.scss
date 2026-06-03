@@ -1,0 +1,74 @@
+// Ícones consumidos do repositório de recursos (creamy-kit-resources).
+// https://github.com/marinellibr/creamy-kit-resources
+//
+// Os SVGs são aplicados como `mask-image` a partir da raw URL do GitHub e
+// pintados com `background-color: currentColor`, de modo que o ícone vem
+// direto do git e ainda acompanha a cor do tema (branco, escuro, etc.).
+//
+// Catálogo completo: ver README.md (seção "Catálogo de ícones").
+
+$resources-base:
+  'https://raw.githubusercontent.com/marinellibr/creamy-kit-resources/main/icons';
+
+/// Aplica qualquer ícone do creamy-kit-resources como máscara.
+///
+/// @param {String} $name - nome do arquivo SVG, sem extensão
+///                         (ex.: 'arrow_right', 'add_circle_base').
+/// @param {Length} $size - largura/altura do ícone (default 16px).
+///
+/// @example scss
+///   .my-icon { @include icons.icon('arrow_right', 20px); }
+@mixin icon($name, $size: 16px) {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: $size;
+  height: $size;
+  background-color: currentColor;
+  -webkit-mask: url('#{$resources-base}/#{$name}.svg') no-repeat center / contain;
+  mask: url('#{$resources-base}/#{$name}.svg') no-repeat center / contain;
+}
+
+/// Atalho para o chevron à direita usado em breadcrumb/calendar/header.
+/// O repositório de recursos não tem um chevron dedicado, então usamos
+/// `arrow_right.svg` como substituto visual mais próximo.
+///
+/// @param {Length} $size - largura/altura do ícone.
+@mixin chevron-right($size: 16px) {
+  @include icon('arrow_right', $size);
+}
+
+/// Atalho para o chevron para baixo usado em dropdown/multidropdown.
+/// Usa `arrow_down.svg` (o repositório não tem chevron dedicado).
+@mixin chevron-down($size: 16px) {
+  @include icon('arrow_down', $size);
+}
+
+/// "X" de fechar (alert, datepicker, search clear).
+@mixin close($size: 16px) {
+  @include icon('x_base', $size);
+}
+
+/// Círculo "!" usado nos helpers de erro de input/dropdown/textbox/password.
+@mixin info-error($size: 16px) {
+  @include icon('error_circle_variant', $size);
+}
+
+/// Lupa de busca.
+@mixin search-icon($size: 24px) {
+  @include icon('search_variant', $size);
+}
+
+/// Olho (mostrar senha).
+@mixin eye-show($size: 24px) {
+  @include icon('visibility_on_base', $size);
+}
+
+/// Olho cortado (esconder senha).
+@mixin eye-hide($size: 24px) {
+  @include icon('eye_off_base', $size);
+}
+
+/// Microfone (header em modo busca).
+@mixin microphone($size: 24px) {
+  @include icon('microphone_base', $size);
+}
