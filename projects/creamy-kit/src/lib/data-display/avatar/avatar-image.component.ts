@@ -10,15 +10,15 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
  * Avatar com imagem.
  *
  * ```html
- * <kit-avatar-image src="foto.jpg" alt="Luiz" size="large" />
+ * <creamy-kit-avatar-image src="foto.jpg" alt="Luiz" size="large" />
  * ```
  */
 @Component({
-  selector: 'kit-avatar-image',
+  selector: 'creamy-kit-avatar-image',
   standalone: true,
   imports: [AvatarShellComponent],
   template: `
-    <kit-avatar-shell
+    <creamy-kit-avatar-shell
       transparent
       [size]="size()"
       [contrast]="contrast()"

@@ -17,11 +17,11 @@ export type TagColor = 'neutral' | 'primary' | 'success' | 'error' | 'alert';
  * Pequena etiqueta (pill) com o conteúdo projetado via `<ng-content>`.
  *
  * ```html
- * <kit-tag color="success">Pago</kit-tag>
+ * <creamy-kit-tag color="success">Pago</kit-tag>
  * ```
  */
 @Component({
-  selector: 'kit-tag',
+  selector: 'creamy-kit-tag',
   standalone: true,
   imports: [],
   template: `<span class="tag"><ng-content /></span>`,

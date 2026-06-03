@@ -27,7 +27,7 @@ export type TextboxVariant = 'default' | 'on-brand';
  * Implementa `ControlValueAccessor`.
  *
  * ```html
- * <kit-textbox
+ * <creamy-kit-textbox
  *   title="Comentário"
  *   placeholder="Escreva aqui…"
  *   helper="Seja breve"
@@ -37,7 +37,7 @@ export type TextboxVariant = 'default' | 'on-brand';
  * ```
  */
 @Component({
-  selector: 'kit-textbox',
+  selector: 'creamy-kit-textbox',
   standalone: true,
   imports: [],
   templateUrl: './textbox.component.html',

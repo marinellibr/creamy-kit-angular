@@ -16,14 +16,14 @@ import { BannerSize } from './banner-base.directive';
  * slot `[trailing]` para o elemento à direita de cada variação.
  */
 @Component({
-  selector: 'kit-banner-shell',
+  selector: 'creamy-kit-banner-shell',
   standalone: true,
   imports: [IconComponent],
   template: `
     <div class="banner">
       <span class="banner__icon" [style.color]="iconColorCss()">
         @if (iconName()) {
-          <kit-icon [name]="iconName()" [size]="iconSizePx()" [color]="iconColorCss()" />
+          <creamy-kit-icon [name]="iconName()" [size]="iconSizePx()" [color]="iconColorCss()" />
         } @else {
           <ng-content select="[icon]" />
         }

@@ -11,11 +11,11 @@ import { ThemeService } from '../../core/theme.service';
  * Link de texto sublinhado, com o rótulo projetado via `<ng-content>`.
  *
  * ```html
- * <kit-text-link href="/termos">Termos de uso</kit-text-link>
+ * <creamy-kit-text-link href="/termos">Termos de uso</kit-text-link>
  * ```
  */
 @Component({
-  selector: 'kit-text-link',
+  selector: 'creamy-kit-text-link',
   standalone: true,
   imports: [],
   template: `

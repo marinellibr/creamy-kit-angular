@@ -13,13 +13,13 @@ import { HeaderBase } from './header-base.directive';
  * direita (projetadas via `[actions]`).
  *
  * ```html
- * <kit-header-title title="Pedidos" back>
+ * <creamy-kit-header-title title="Pedidos" back>
  *   <button actions>…</button>
  * </kit-header-title>
  * ```
  */
 @Component({
-  selector: 'kit-header-title',
+  selector: 'creamy-kit-header-title',
   standalone: true,
   imports: [IconComponent],
   templateUrl: './header-title.component.html',

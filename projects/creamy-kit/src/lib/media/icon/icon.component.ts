@@ -20,9 +20,9 @@ const ICON_BASE_URL =
  * `currentColor`). O tamanho é em pixels.
  *
  * ```html
- * <kit-icon name="arrow_right" />
- * <kit-icon name="lock_base" [size]="32" color="var(--primary-base)" />
- * <kit-icon name="search_variant" [size]="16" color="#ed339c" />
+ * <creamy-kit-icon name="arrow_right" />
+ * <creamy-kit-icon name="lock_base" [size]="32" color="var(--primary-base)" />
+ * <creamy-kit-icon name="search_variant" [size]="16" color="#ed339c" />
  * ```
  *
  * Inputs:
@@ -33,7 +33,7 @@ const ICON_BASE_URL =
  * - `ariaLabel` — opcional. Quando omitido, o `name` é usado.
  */
 @Component({
-  selector: 'kit-icon',
+  selector: 'creamy-kit-icon',
   standalone: true,
   template: `
     <span

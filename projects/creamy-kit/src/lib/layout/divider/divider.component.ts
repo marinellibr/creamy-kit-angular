@@ -27,12 +27,12 @@ export type DividerColor =
  * Linha horizontal de separação. Recebe espessura e cor como parâmetros.
  *
  * ```html
- * <kit-divider />
- * <kit-divider weight="3px" color="primary" />
+ * <creamy-kit-divider />
+ * <creamy-kit-divider weight="3px" color="primary" />
  * ```
  */
 @Component({
-  selector: 'kit-divider',
+  selector: 'creamy-kit-divider',
   standalone: true,
   imports: [],
   templateUrl: './divider.component.html',

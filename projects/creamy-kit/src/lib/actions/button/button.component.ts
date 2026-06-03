@@ -40,7 +40,7 @@ export type ButtonContrast =
  * ## Exemplo básico
  *
  * ```html
- * <kit-button>
+ * <creamy-kit-button>
  *   Salvar
  * </kit-button>
  * ```
@@ -48,7 +48,7 @@ export type ButtonContrast =
  * ## Outline
  *
  * ```html
- * <kit-button appearance="outline">
+ * <creamy-kit-button appearance="outline">
  *   Cancelar
  * </kit-button>
  * ```
@@ -56,7 +56,7 @@ export type ButtonContrast =
  * ## On Brand
  *
  * ```html
- * <kit-button contrast="on-brand">
+ * <creamy-kit-button contrast="on-brand">
  *   Comprar
  * </kit-button>
  * ```
@@ -64,7 +64,7 @@ export type ButtonContrast =
  * ## Outline + On Brand
  *
  * ```html
- * <kit-button
+ * <creamy-kit-button
  *   appearance="outline"
  *   contrast="on-brand">
  *   Continuar
@@ -72,7 +72,7 @@ export type ButtonContrast =
  * ```
  */
 @Component({
-  selector: 'kit-button',
+  selector: 'creamy-kit-button',
   standalone: true,
   imports: [],
   templateUrl: './button.component.html',

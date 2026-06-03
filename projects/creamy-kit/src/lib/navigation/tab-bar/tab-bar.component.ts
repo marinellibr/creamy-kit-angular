@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-tab-bar',
+  selector: 'creamy-kit-tab-bar',
   standalone: true,
   imports: [],
   templateUrl: './tab-bar.component.html',

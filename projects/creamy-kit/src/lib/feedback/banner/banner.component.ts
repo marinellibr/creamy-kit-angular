@@ -8,7 +8,7 @@ import { BannerShellComponent } from './banner-shell.component';
  * descrição e um chevron à direita.
  *
  * ```html
- * <kit-banner
+ * <creamy-kit-banner
  *   title="Tudo certo!"
  *   description="Sua operação foi concluída."
  *   iconName="check_base"
@@ -16,11 +16,11 @@ import { BannerShellComponent } from './banner-shell.component';
  * ```
  */
 @Component({
-  selector: 'kit-banner',
+  selector: 'creamy-kit-banner',
   standalone: true,
   imports: [BannerShellComponent],
   template: `
-    <kit-banner-shell
+    <creamy-kit-banner-shell
       [size]="size()"
       [title]="title()"
       [description]="description()"

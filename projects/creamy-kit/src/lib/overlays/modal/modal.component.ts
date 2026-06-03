@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-modal',
+  selector: 'creamy-kit-modal',
   standalone: true,
   imports: [],
   templateUrl: './modal.component.html',

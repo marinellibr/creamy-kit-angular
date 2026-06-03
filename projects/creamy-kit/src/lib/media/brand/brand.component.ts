@@ -15,11 +15,11 @@ const BRAND_BASE_URL =
  * Exibe um logo do `creamy-kit-resources/brands` com a altura informada.
  *
  * ```html
- * <kit-brand name="creamy" [height]="32" />
+ * <creamy-kit-brand name="creamy" [height]="32" />
  * ```
  */
 @Component({
-  selector: 'kit-brand',
+  selector: 'creamy-kit-brand',
   standalone: true,
   imports: [],
   template: `

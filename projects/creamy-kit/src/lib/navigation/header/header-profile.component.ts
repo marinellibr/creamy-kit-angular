@@ -12,13 +12,13 @@ import { HeaderBase } from './header-base.directive';
  * (projetadas via `[actions]`).
  *
  * ```html
- * <kit-header-profile title="Luiz Marinelli" subtitle="Premium" avatarSrc="foto.jpg">
+ * <creamy-kit-header-profile title="Luiz Marinelli" subtitle="Premium" avatarSrc="foto.jpg">
  *   <button actions>…</button>
  * </kit-header-profile>
  * ```
  */
 @Component({
-  selector: 'kit-header-profile',
+  selector: 'creamy-kit-header-profile',
   standalone: true,
   imports: [AvatarImageComponent],
   templateUrl: './header-profile.component.html',

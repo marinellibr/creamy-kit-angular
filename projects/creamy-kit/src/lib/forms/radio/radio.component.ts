@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-radio',
+  selector: 'creamy-kit-radio',
   standalone: true,
   imports: [],
   templateUrl: './radio.component.html',

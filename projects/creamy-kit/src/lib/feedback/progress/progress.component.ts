@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-progress',
+  selector: 'creamy-kit-progress',
   standalone: true,
   imports: [],
   templateUrl: './progress.component.html',

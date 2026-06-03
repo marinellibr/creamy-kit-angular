@@ -31,7 +31,7 @@ export type MultiDropdownVariant = 'default';
  * Implementa `ControlValueAccessor`.
  *
  * ```html
- * <kit-multidropdown
+ * <creamy-kit-multidropdown
  *   title="Tags"
  *   placeholder="Selecione"
  *   [options]="opcoes"
@@ -40,7 +40,7 @@ export type MultiDropdownVariant = 'default';
  * ```
  */
 @Component({
-  selector: 'kit-multidropdown',
+  selector: 'creamy-kit-multidropdown',
   standalone: true,
   imports: [],
   templateUrl: './multidropdown.component.html',

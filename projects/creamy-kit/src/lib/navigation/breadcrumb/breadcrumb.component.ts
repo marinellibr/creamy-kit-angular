@@ -26,14 +26,14 @@ export interface BreadcrumbItemClick {
  * por um chevron à direita. Recebe um `path` e o divide por "/".
  *
  * ```html
- * <kit-breadcrumb
+ * <creamy-kit-breadcrumb
  *   path="Início/Produtos/Tênis"
  *   (itemClick)="ir($event)"
  * />
  * ```
  */
 @Component({
-  selector: 'kit-breadcrumb',
+  selector: 'creamy-kit-breadcrumb',
   standalone: true,
   imports: [],
   templateUrl: './breadcrumb.component.html',

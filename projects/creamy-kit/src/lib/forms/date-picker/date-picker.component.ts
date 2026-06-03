@@ -26,7 +26,7 @@ import { ThemeService } from '../../core/theme.service';
  * enquanto o usuário navega e é confirmada em `(confirm)`.
  *
  * ```html
- * <kit-date-picker
+ * <creamy-kit-date-picker
  *   title="Selecione a data"
  *   description="Description"
  *   infoText="Texto informativo sobre a escolha da data"
@@ -37,7 +37,7 @@ import { ThemeService } from '../../core/theme.service';
  * ```
  */
 @Component({
-  selector: 'kit-date-picker',
+  selector: 'creamy-kit-date-picker',
   standalone: true,
   imports: [FormsModule, CalendarComponent, ButtonComponent],
   templateUrl: './date-picker.component.html',

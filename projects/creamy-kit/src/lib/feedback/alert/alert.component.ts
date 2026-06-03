@@ -24,7 +24,7 @@ export type AlertFeedback = 'information' | 'success' | 'error';
  * bloco (título, corpo projetado e link) + botão de fechar.
  *
  * ```html
- * <kit-alert
+ * <creamy-kit-alert
  *   feedback="success"
  *   title="Tudo certo!"
  *   linkText="Ver detalhes"
@@ -34,7 +34,7 @@ export type AlertFeedback = 'information' | 'success' | 'error';
  * ```
  */
 @Component({
-  selector: 'kit-alert',
+  selector: 'creamy-kit-alert',
   standalone: true,
   imports: [],
   templateUrl: './alert.component.html',

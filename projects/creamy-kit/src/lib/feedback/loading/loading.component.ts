@@ -9,8 +9,8 @@ type LoadingVariant = 'default' | 'subtle';
  * Exibe um spinner animado com opções de tamanho e variante.
  *
  * ```html
- * <kit-loading />
- * <kit-loading size="large" variant="subtle" />
+ * <creamy-kit-loading />
+ * <creamy-kit-loading size="large" variant="subtle" />
  * ```
  *
  * Inputs:
@@ -18,7 +18,7 @@ type LoadingVariant = 'default' | 'subtle';
  * - `variant` — estilo do spinner ('default' | 'subtle'). Default: 'default'
  */
 @Component({
-  selector: 'kit-loading',
+  selector: 'creamy-kit-loading',
   standalone: true,
   templateUrl: './loading.component.html',
   styleUrl: './loading.component.scss',

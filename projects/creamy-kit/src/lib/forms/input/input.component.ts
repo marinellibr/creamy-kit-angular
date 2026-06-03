@@ -25,7 +25,7 @@ export type InputVariant = 'default';
  * formulários reativos.
  *
  * ```html
- * <kit-input
+ * <creamy-kit-input
  *   title="E-mail"
  *   placeholder="seu@email.com"
  *   helper="Usaremos para login"
@@ -36,7 +36,7 @@ export type InputVariant = 'default';
  * ```
  */
 @Component({
-  selector: 'kit-input',
+  selector: 'creamy-kit-input',
   standalone: true,
   imports: [],
   templateUrl: './input.component.html',

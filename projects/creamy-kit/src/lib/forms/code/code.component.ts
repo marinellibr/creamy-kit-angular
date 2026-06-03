@@ -27,11 +27,11 @@ export type CodeLength = 4 | 6;
  * concatenada).
  *
  * ```html
- * <kit-code title="Código" [length]="6" [(ngModel)]="codigo" />
+ * <creamy-kit-code title="Código" [length]="6" [(ngModel)]="codigo" />
  * ```
  */
 @Component({
-  selector: 'kit-code',
+  selector: 'creamy-kit-code',
   standalone: true,
   imports: [],
   templateUrl: './code.component.html',

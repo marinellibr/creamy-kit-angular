@@ -13,17 +13,17 @@ import { IconComponent } from '../../media/icon/icon.component';
  * Botão com um ícone em destaque e um rótulo abaixo. Reutiliza `kit-icon`.
  *
  * ```html
- * <kit-shortcut iconName="wallet_base" label="Carteira" (pressed)="abrir()" />
+ * <creamy-kit-shortcut iconName="wallet_base" label="Carteira" (pressed)="abrir()" />
  * ```
  */
 @Component({
-  selector: 'kit-shortcut',
+  selector: 'creamy-kit-shortcut',
   standalone: true,
   imports: [IconComponent],
   template: `
     <button type="button" class="shortcut" (click)="pressed.emit()">
       <span class="shortcut__icon">
-        <kit-icon [name]="iconName()" [size]="24" color="currentColor" />
+        <creamy-kit-icon [name]="iconName()" [size]="24" color="currentColor" />
       </span>
       <span class="shortcut__label">{{ label() }}</span>
     </button>

@@ -28,11 +28,11 @@ export interface CheckboxOption {
  * `ControlValueAccessor`.
  *
  * ```html
- * <kit-checkbox [options]="opcoes" [(ngModel)]="marcados" />
+ * <creamy-kit-checkbox [options]="opcoes" [(ngModel)]="marcados" />
  * ```
  */
 @Component({
-  selector: 'kit-checkbox',
+  selector: 'creamy-kit-checkbox',
   standalone: true,
   imports: [DividerComponent],
   templateUrl: './checkbox.component.html',

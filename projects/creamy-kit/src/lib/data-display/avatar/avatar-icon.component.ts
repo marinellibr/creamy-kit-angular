@@ -19,20 +19,20 @@ const ICON_PX: Record<AvatarSize, number> = {
  * Avatar com ícone.
  *
  * ```html
- * <kit-avatar-icon name="user_base" contrast="dark" size="medium" />
+ * <creamy-kit-avatar-icon name="user_base" contrast="dark" size="medium" />
  * ```
  */
 @Component({
-  selector: 'kit-avatar-icon',
+  selector: 'creamy-kit-avatar-icon',
   standalone: true,
   imports: [AvatarShellComponent, IconComponent],
   template: `
-    <kit-avatar-shell
+    <creamy-kit-avatar-shell
       [size]="size()"
       [contrast]="contrast()"
       [percentage]="percentage()"
     >
-      <kit-icon [name]="name()" [size]="iconPx()" color="currentColor" />
+      <creamy-kit-icon [name]="name()" [size]="iconPx()" color="currentColor" />
     </kit-avatar-shell>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

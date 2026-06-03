@@ -24,7 +24,7 @@ import { ThemeService } from '../../core/theme.service';
  * - qualquer outro texto → mostra o texto recebido.
  *
  * ```html
- * <kit-calendar
+ * <creamy-kit-calendar
  *   footerLabel="Data selecionada"
  *   footerValue="auto"
  *   [(ngModel)]="data"
@@ -32,7 +32,7 @@ import { ThemeService } from '../../core/theme.service';
  * ```
  */
 @Component({
-  selector: 'kit-calendar',
+  selector: 'creamy-kit-calendar',
   standalone: true,
   imports: [],
   templateUrl: './calendar.component.html',

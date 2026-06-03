@@ -18,7 +18,7 @@
     </button>
   </header>
 
-  <kit-calendar
+  <creamy-kit-calendar
     bare
     [footerValue]="infoText()"
     [ngModel]="selected()"
@@ -26,10 +26,10 @@
   />
 
   <div class="datepicker__actions">
-    <kit-button class="datepicker__action" (click)="onConfirm()">
+    <creamy-kit-button class="datepicker__action" (click)="onConfirm()">
       {{ confirmLabel() }}
     </kit-button>
-    <kit-button
+    <creamy-kit-button
       class="datepicker__action"
       appearance="outline"
       (click)="onCancel()"

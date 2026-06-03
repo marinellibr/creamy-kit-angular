@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-pagination',
+  selector: 'creamy-kit-pagination',
   standalone: true,
   imports: [],
   templateUrl: './pagination.component.html',

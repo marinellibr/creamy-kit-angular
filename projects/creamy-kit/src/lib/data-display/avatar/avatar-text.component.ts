@@ -10,15 +10,15 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
  * Avatar com iniciais (texto).
  *
  * ```html
- * <kit-avatar-text text="LM" size="large" contrast="variant" />
+ * <creamy-kit-avatar-text text="LM" size="large" contrast="variant" />
  * ```
  */
 @Component({
-  selector: 'kit-avatar-text',
+  selector: 'creamy-kit-avatar-text',
   standalone: true,
   imports: [AvatarShellComponent],
   template: `
-    <kit-avatar-shell
+    <creamy-kit-avatar-shell
       [size]="size()"
       [contrast]="contrast()"
       [percentage]="percentage()"

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-switch',
+  selector: 'creamy-kit-switch',
   standalone: true,
   imports: [],
   templateUrl: './switch.component.html',

@@ -28,11 +28,11 @@ export type SnackbarFeedback =
  * projetado. Normalmente temporária.
  *
  * ```html
- * <kit-snackbar feedback="error">Não foi possível salvar.</kit-snackbar>
+ * <creamy-kit-snackbar feedback="error">Não foi possível salvar.</kit-snackbar>
  * ```
  */
 @Component({
-  selector: 'kit-snackbar',
+  selector: 'creamy-kit-snackbar',
   standalone: true,
   imports: [],
   templateUrl: './snackbar.component.html',

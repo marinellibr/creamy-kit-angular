@@ -2,10 +2,10 @@
   <div class="header__row">
     @if (back()) {
       <button type="button" class="header__back" aria-label="Voltar" (click)="backClick.emit()">
-        <kit-icon name="arrow_left" [size]="20" color="currentColor" ariaLabel="" />
+        <creamy-kit-icon name="arrow_left" [size]="20" color="currentColor" ariaLabel="" />
       </button>
     } @else if (avatarSrc()) {
-      <kit-avatar-image
+      <creamy-kit-avatar-image
         class="header__avatar"
         [src]="avatarSrc()"
         alt="Perfil"
@@ -14,8 +14,8 @@
       />
     }
 
-    <kit-search class="header__search" [placeholder]="placeholder()">
-      <kit-icon
+    <creamy-kit-search class="header__search" [placeholder]="placeholder()">
+      <creamy-kit-icon
         iconRight
         name="microphone_base"
         [size]="24"

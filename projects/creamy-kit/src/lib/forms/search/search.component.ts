@@ -33,13 +33,13 @@ export type SearchVariant = 'default' | 'on-brand';
  * Implementa `ControlValueAccessor`.
  *
  * ```html
- * <kit-search placeholder="Buscar…" [(ngModel)]="termo">
+ * <creamy-kit-search placeholder="Buscar…" [(ngModel)]="termo">
  *   <svg iconRight>…</svg>
  * </kit-search>
  * ```
  */
 @Component({
-  selector: 'kit-search',
+  selector: 'creamy-kit-search',
   standalone: true,
   imports: [],
   templateUrl: './search.component.html',

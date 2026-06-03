@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kit-tooltip',
+  selector: 'creamy-kit-tooltip',
   standalone: true,
   imports: [],
   templateUrl: './tooltip.component.html',

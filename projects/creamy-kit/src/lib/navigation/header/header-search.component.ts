@@ -15,11 +15,11 @@ import { HeaderBase } from './header-base.directive';
  * um botão de voltar ou um avatar.
  *
  * ```html
- * <kit-header-search placeholder="Buscar" avatarSrc="foto.jpg" />
+ * <creamy-kit-header-search placeholder="Buscar" avatarSrc="foto.jpg" />
  * ```
  */
 @Component({
-  selector: 'kit-header-search',
+  selector: 'creamy-kit-header-search',
   standalone: true,
   imports: [AvatarImageComponent, IconComponent, SearchComponent],
   templateUrl: './header-search.component.html',

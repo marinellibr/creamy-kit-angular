@@ -12,7 +12,7 @@ import { BannerShellComponent } from './banner-shell.component';
  * com um valor (em destaque) e uma label abaixo.
  *
  * ```html
- * <kit-banner-tag
+ * <creamy-kit-banner-tag
  *   title="Cashback"
  *   description="Disponível hoje"
  *   iconName="wallet_base"
@@ -21,11 +21,11 @@ import { BannerShellComponent } from './banner-shell.component';
  * ```
  */
 @Component({
-  selector: 'kit-banner-tag',
+  selector: 'creamy-kit-banner-tag',
   standalone: true,
   imports: [BannerShellComponent],
   template: `
-    <kit-banner-shell
+    <creamy-kit-banner-shell
       [size]="size()"
       [title]="title()"
       [description]="description()"

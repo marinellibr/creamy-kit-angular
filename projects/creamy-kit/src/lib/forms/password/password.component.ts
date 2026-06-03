@@ -27,7 +27,7 @@ export type PasswordVariant = 'default' | 'on-brand';
  * `ControlValueAccessor`.
  *
  * ```html
- * <kit-password
+ * <creamy-kit-password
  *   title="Senha"
  *   placeholder="Mínimo 8 caracteres"
  *   helper="Use letras e números"
@@ -36,7 +36,7 @@ export type PasswordVariant = 'default' | 'on-brand';
  * ```
  */
 @Component({
-  selector: 'kit-password',
+  selector: 'creamy-kit-password',
   standalone: true,
   imports: [],
   templateUrl: './password.component.html',

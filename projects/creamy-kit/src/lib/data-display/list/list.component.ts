@@ -8,14 +8,14 @@ import { ThemeService } from '../../core/theme.service';
  * separando-os com uma linha sutil.
  *
  * ```html
- * <kit-list>
+ * <creamy-kit-list>
  *   <div>Item 1</div>
  *   <div>Item 2</div>
  * </kit-list>
  * ```
  */
 @Component({
-  selector: 'kit-list',
+  selector: 'creamy-kit-list',
   standalone: true,
   imports: [],
   template: `<div class="list"><ng-content /></div>`,

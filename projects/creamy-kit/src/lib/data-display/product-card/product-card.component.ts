@@ -16,7 +16,7 @@ import { TagComponent, TagColor } from '../tag/tag.component';
  * imagem no topo (com tag opcional), título, preço e botão de ação.
  *
  * ```html
- * <kit-product-card
+ * <creamy-kit-product-card
  *   imagePath="tenis.jpg"
  *   title="Tênis Creamy"
  *   price="R$ 299,90"
@@ -26,15 +26,15 @@ import { TagComponent, TagColor } from '../tag/tag.component';
  * ```
  */
 @Component({
-  selector: 'kit-product-card',
+  selector: 'creamy-kit-product-card',
   standalone: true,
   imports: [ButtonComponent, ImageComponent, TagComponent],
   template: `
     <div class="product-card">
       <div class="product-card__media">
-        <kit-image size="small" [path]="imagePath()" [alt]="title()" />
+        <creamy-kit-image size="small" [path]="imagePath()" [alt]="title()" />
         @if (tagText()) {
-          <kit-tag class="product-card__tag" [color]="tagColor()">{{ tagText() }}</kit-tag>
+          <creamy-kit-tag class="product-card__tag" [color]="tagColor()">{{ tagText() }}</kit-tag>
         }
       </div>
 
@@ -44,7 +44,7 @@ import { TagComponent, TagColor } from '../tag/tag.component';
       </div>
 
       @if (buttonText()) {
-        <kit-button (click)="action.emit()">{{ buttonText() }}</kit-button>
+        <creamy-kit-button (click)="action.emit()">{{ buttonText() }}</kit-button>
       }
     </div>
   `,

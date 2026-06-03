@@ -13,13 +13,13 @@ import { HeaderBase } from './header-base.directive';
  * "small title" (overline) seguido do título grande.
  *
  * ```html
- * <kit-header-large-title subtitle="Olá," title="Luiz" back>
+ * <creamy-kit-header-large-title subtitle="Olá," title="Luiz" back>
  *   <button actions>…</button>
  * </kit-header-large-title>
  * ```
  */
 @Component({
-  selector: 'kit-header-large-title',
+  selector: 'creamy-kit-header-large-title',
   standalone: true,
   imports: [IconComponent],
   templateUrl: './header-large-title.component.html',

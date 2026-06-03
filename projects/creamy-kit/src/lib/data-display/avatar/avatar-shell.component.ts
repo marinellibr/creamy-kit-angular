@@ -18,7 +18,7 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
  * reutilizam por composição, projetando apenas o conteúdo.
  */
 @Component({
-  selector: 'kit-avatar-shell',
+  selector: 'creamy-kit-avatar-shell',
   standalone: true,
   template: `
     <div class="avatar" [style.--kit-avatar-progress]="progressCss()">

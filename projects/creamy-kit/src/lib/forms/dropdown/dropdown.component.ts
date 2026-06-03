@@ -36,7 +36,7 @@ export type DropdownVariant = 'default' | 'on-brand';
  * disabled e erro). Implementa `ControlValueAccessor`.
  *
  * ```html
- * <kit-dropdown
+ * <creamy-kit-dropdown
  *   title="País"
  *   placeholder="Selecione"
  *   helper="Escolha um país"
@@ -46,7 +46,7 @@ export type DropdownVariant = 'default' | 'on-brand';
  * ```
  */
 @Component({
-  selector: 'kit-dropdown',
+  selector: 'creamy-kit-dropdown',
   standalone: true,
   imports: [],
   templateUrl: './dropdown.component.html',

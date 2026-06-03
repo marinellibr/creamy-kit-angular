@@ -25,11 +25,11 @@ export type ImageSize = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large';
  * de erro de carregamento, exibe Background/base no lugar.
  *
  * ```html
- * <kit-image size="medium" path="foto.jpg" alt="Descrição" />
+ * <creamy-kit-image size="medium" path="foto.jpg" alt="Descrição" />
  * ```
  */
 @Component({
-  selector: 'kit-image',
+  selector: 'creamy-kit-image',
   standalone: true,
   imports: [],
   templateUrl: './image.component.html',

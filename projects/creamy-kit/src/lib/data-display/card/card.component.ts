@@ -11,13 +11,13 @@ import { ThemeService } from '../../core/theme.service';
  * projetado via `<ng-content>`.
  *
  * ```html
- * <kit-card>
+ * <creamy-kit-card>
  *   <!-- conteúdo -->
  * </kit-card>
  * ```
  */
 @Component({
-  selector: 'kit-card',
+  selector: 'creamy-kit-card',
   standalone: true,
   imports: [],
   templateUrl: './card.component.html',

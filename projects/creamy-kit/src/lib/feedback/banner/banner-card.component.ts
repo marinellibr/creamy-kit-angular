@@ -13,7 +13,7 @@ import { BannerShellComponent } from './banner-shell.component';
  * à direita.
  *
  * ```html
- * <kit-banner-card
+ * <creamy-kit-banner-card
  *   title="Configurações"
  *   description="Gerencie sua conta"
  *   iconName="settings_base"
@@ -21,11 +21,11 @@ import { BannerShellComponent } from './banner-shell.component';
  * ```
  */
 @Component({
-  selector: 'kit-banner-card',
+  selector: 'creamy-kit-banner-card',
   standalone: true,
   imports: [BannerShellComponent, IconComponent],
   template: `
-    <kit-banner-shell
+    <creamy-kit-banner-shell
       [size]="size()"
       [title]="title()"
       [description]="description()"
@@ -35,7 +35,7 @@ import { BannerShellComponent } from './banner-shell.component';
     >
       @if (trailingIconName()) {
         <span trailing class="banner__trailing">
-          <kit-icon [name]="trailingIconName()" [size]="20" color="currentColor" />
+          <creamy-kit-icon [name]="trailingIconName()" [size]="20" color="currentColor" />
         </span>
       }
     </kit-banner-shell>
