@@ -1,0 +1,11 @@
+<div class="brand-cardholder">
+  <div *ngIf="isLoading" class="brand-cardholder__loading">
+    Loading...
+  </div>
+
+  <div *ngIf="error" class="brand-cardholder__error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="svgContent && !isLoading && !error" class="brand-cardholder__content" [innerHTML]="svgContent"></div>
+</div>

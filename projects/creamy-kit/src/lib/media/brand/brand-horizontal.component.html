@@ -1,0 +1,11 @@
+<div class="brand-horizontal" [class]="'brand-horizontal--' + size">
+  <div *ngIf="isLoading" class="brand-horizontal__loading">
+    Loading...
+  </div>
+
+  <div *ngIf="error" class="brand-horizontal__error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="svgContent && !isLoading && !error" class="brand-horizontal__content" [innerHTML]="svgContent"></div>
+</div>
