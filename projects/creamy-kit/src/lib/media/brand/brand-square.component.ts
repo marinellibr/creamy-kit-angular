@@ -1,58 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BrandService } from './brand.service';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+
+const BRAND_BASE_URL =
+  'https://raw.githubusercontent.com/marinellibr/creamy-kit-resources/main/brands';
 
 type BrandSize = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'creamy-brand-square',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
-  templateUrl: './brand-square.component.html',
-  styleUrl: './brand-square.component.scss'
+  template: `
+    <div class="brand-square" [class]="'brand-square--' + size()">
+      <img
+        [src]="brandUrl()"
+        [alt]="brandName()"
+        class="brand-square__image"
+        loading="lazy"
+      />
+    </div>
+  `,
+  styleUrl: './brand-square.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BrandSquareComponent implements OnInit {
-  @Input() brandName: string = '';
-  @Input() size: BrandSize = 'medium';
+export class BrandSquareComponent {
+  readonly brandName = input.required<string>();
+  readonly size = input<BrandSize>('medium');
 
-  svgContent: SafeHtml | null = null;
-  isLoading = true;
-  error: string | null = null;
-
-  constructor(
-    private brandService: BrandService,
-    private sanitizer: DomSanitizer
-  ) {}
-
-  ngOnInit(): void {
-    this.loadBrandSvg();
-  }
-
-  ngOnChanges(): void {
-    this.loadBrandSvg();
-  }
-
-  private loadBrandSvg(): void {
-    if (!this.brandName) {
-      this.error = 'Brand name is required';
-      this.isLoading = false;
-      return;
-    }
-
-    this.isLoading = true;
-    this.error = null;
-
-    this.brandService.getBrandSvg(this.brandName, 'square', this.size).subscribe({
-      next: (svg) => {
-        this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svg);
-        this.isLoading = false;
-      },
-      error: () => {
-        this.error = `Failed to load brand: ${this.brandName}`;
-        this.isLoading = false;
-      }
-    });
-  }
+  readonly brandUrl = computed(() => {
+    const name = this.brandName().toLowerCase().replace(/\s+/g, '_');
+    return `${BRAND_BASE_URL}/${name}_square_${this.size()}.svg`;
+  });
 }

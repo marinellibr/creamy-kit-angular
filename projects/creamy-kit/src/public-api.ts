@@ -65,7 +65,6 @@ export * from './lib/typography/text-link/text-link.component';
 export * from './lib/media/icon/icon.component';
 export * from './lib/media/image/image.component';
 export * from './lib/media/brand/brand.component';
-export * from './lib/media/brand/brand.service';
 export * from './lib/media/brand/brand-square.component';
 export * from './lib/media/brand/brand-horizontal.component';
 export * from './lib/media/brand/brand-cardholder.component';
