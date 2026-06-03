@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BrandService } from './brand.service';
 
@@ -8,7 +9,7 @@ type BrandSize = 'small' | 'medium' | 'large';
 @Component({
   selector: 'creamy-brand-square',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './brand-square.component.html',
   styleUrl: './brand-square.component.scss'
 })

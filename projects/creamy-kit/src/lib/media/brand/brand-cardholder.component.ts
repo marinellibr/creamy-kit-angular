@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BrandService } from './brand.service';
 
 @Component({
   selector: 'creamy-brand-cardholder',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './brand-cardholder.component.html',
   styleUrl: './brand-cardholder.component.scss'
 })

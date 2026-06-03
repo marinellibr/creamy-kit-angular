@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BrandService } from './brand.service';
 
@@ -8,7 +9,7 @@ type BrandSize = 'small' | 'medium' | 'large';
 @Component({
   selector: 'creamy-brand-horizontal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './brand-horizontal.component.html',
   styleUrl: './brand-horizontal.component.scss'
 })
