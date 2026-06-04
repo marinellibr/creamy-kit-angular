@@ -26,6 +26,7 @@ export * from './lib/navigation/breadcrumb/breadcrumb.component';
 export * from './lib/navigation/pagination/pagination.component';
 export * from './lib/navigation/tabs/tabs.component';
 export * from './lib/navigation/tab-bar/tab-bar.component';
+export * from './lib/navigation/tab-bar/tab-bar-item.component';
 export * from './lib/navigation/header/header-base.directive';
 export * from './lib/navigation/header/header-search.component';
 export * from './lib/navigation/header/header-title.component';

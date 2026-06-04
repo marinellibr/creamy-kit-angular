@@ -20,4 +20,14 @@ describe('TabBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should implement ControlValueAccessor', () => {
+    let changedValue: string | null = null;
+    component.registerOnChange((v: string | null) => {
+      changedValue = v;
+    });
+
+    component.writeValue('home');
+    expect(component['value']()).toBe('home');
+  });
 });

@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="tab-bar-item"
+  [attr.data-value]="value()"
+>
+  <creamy-kit-icon [name]="icon()" [size]="24" />
+  @if (label()) {
+    <span class="tab-bar-item__label">{{ label() }}</span>
+  }
+</button>
