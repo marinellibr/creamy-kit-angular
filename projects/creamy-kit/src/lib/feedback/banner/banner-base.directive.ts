@@ -13,8 +13,9 @@ import {
 export type BannerSize = 'small' | 'medium' | 'large';
 
 /**
- * Inputs compartilhados pelas variações de Banner (content, tag e card).
- * Uso interno — não é exportada na API pública.
+ * Base abstrata com os inputs compartilhados pelas variações de Banner
+ * (content, tag e card). Não use diretamente — estenda nas variações.
+ * O tipo `BannerSize` é público.
  */
 @Directive()
 export abstract class BannerBase {

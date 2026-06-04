@@ -10,8 +10,9 @@ import { ThemeService } from '../../core/theme.service';
 export type HeaderTheme = 'brand' | 'light';
 
 /**
- * Base compartilhada pelas variações de Header (tema + binding de host).
- * Uso interno — não é exportada na API pública.
+ * Base abstrata compartilhada pelas variações de Header (tema + binding de
+ * host). Não use diretamente — estenda nas variações. O tipo `HeaderTheme`
+ * é público.
  */
 @Directive()
 export abstract class HeaderBase {

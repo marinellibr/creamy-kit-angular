@@ -5,6 +5,14 @@ import { IconComponent } from '../../media/icon/icon.component';
  * Item de TabBar.
  *
  * Ícone (24px) com label opcional abaixo (12px, cor action-neutral-base).
+ * Use sempre dentro de `<creamy-kit-tab-bar>`.
+ *
+ * ```html
+ * <creamy-kit-tab-bar [(ngModel)]="aba">
+ *   <creamy-kit-tab-bar-item icon="home_base" label="Início" value="home" />
+ *   <creamy-kit-tab-bar-item icon="user_base" label="Perfil" value="perfil" />
+ * </creamy-kit-tab-bar>
+ * ```
  */
 @Component({
   selector: 'creamy-kit-tab-bar-item',
