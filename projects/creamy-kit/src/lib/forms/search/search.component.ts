@@ -2,6 +2,7 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   HostBinding,
   input,
@@ -73,11 +74,22 @@ export class SearchComponent implements ControlValueAccessor {
    */
   readonly small = input(false, { transform: booleanAttribute });
 
+  /** Desabilita o campo. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Valor atual. */
   protected readonly value = signal('');
 
   /** O campo está focado? Controla a troca de ícones. */
   protected readonly focused = signal(false);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
@@ -90,6 +102,11 @@ export class SearchComponent implements ControlValueAccessor {
   @HostBinding('attr.data-small')
   get hostSmall(): '' | null {
     return this.small() ? '' : null;
+  }
+
+  @HostBinding('attr.data-disabled')
+  get hostDisabled(): '' | null {
+    return this.isDisabled() ? '' : null;
   }
 
   protected onInput(event: Event): void {
@@ -108,6 +125,7 @@ export class SearchComponent implements ControlValueAccessor {
   }
 
   protected clear(): void {
+    if (this.isDisabled()) return;
     this.value.set('');
     this.onChange('');
   }
@@ -124,5 +142,9 @@ export class SearchComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabledByForm.set(isDisabled);
   }
 }

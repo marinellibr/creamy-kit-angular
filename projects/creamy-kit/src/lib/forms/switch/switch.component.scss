@@ -25,6 +25,11 @@
     background-color: var(--switch-color);
     justify-content: flex-end;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .switch__thumb {

@@ -16,6 +16,11 @@
   cursor: pointer;
   text-align: left;
   font-family: inherit;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 /* Quadrado — Action/neutral/base, vira primary/base ao marcar. */

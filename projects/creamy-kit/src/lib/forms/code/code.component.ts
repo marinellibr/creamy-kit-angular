@@ -65,8 +65,19 @@ export class CodeComponent implements ControlValueAccessor {
    */
   readonly error = input(false, { transform: booleanAttribute });
 
+  /** Desabilita todos os campos. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Caracteres de cada campo. */
   protected readonly chars = signal<string[]>([]);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   /** Índices para renderizar os campos. */
   protected readonly indexes = computed(() =>
@@ -167,5 +178,9 @@ export class CodeComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabledByForm.set(isDisabled);
   }
 }

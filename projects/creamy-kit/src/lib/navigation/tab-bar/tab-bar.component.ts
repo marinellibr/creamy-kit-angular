@@ -1,6 +1,8 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   contentChildren,
   forwardRef,
   input,
@@ -33,6 +35,9 @@ import { TabBarItemComponent } from './tab-bar-item.component';
   templateUrl: './tab-bar.component.html',
   styleUrl: './tab-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-disabled]': 'isDisabled()',
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -45,14 +50,26 @@ export class TabBarComponent implements ControlValueAccessor {
   /** Tab items filhos. */
   readonly items = contentChildren(TabBarItemComponent);
 
+  /** Desabilita a barra inteira. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Valor selecionado (value do TabBarItem). */
   protected value = signal<string | null>(null);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   protected onChange: (value: string | null) => void = () => {};
   protected onTouched: () => void = () => {};
 
   /** Seleciona um item. */
   select(item: TabBarItemComponent): void {
+    if (this.isDisabled()) return;
     this.value.set(item.value());
     this.onChange(this.value());
     this.onTouched();
@@ -73,6 +90,6 @@ export class TabBarComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    // TODO: adicionar suporte a disabled se necessário
+    this.disabledByForm.set(isDisabled);
   }
 }

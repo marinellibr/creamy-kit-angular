@@ -1,8 +1,11 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
+  signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconComponent } from '../../media/icon/icon.component';
@@ -56,8 +59,19 @@ export class RadioComponent implements ControlValueAccessor {
   /** Cor do ícone radio (base + variant). Se não setado, usa cinza base + azul variant. */
   readonly color = input<string | undefined>(undefined);
 
+  /** Desabilita o grupo inteiro. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Valor selecionado (string). */
   protected value: string | null = null;
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   protected onChange: (value: string | null) => void = () => {};
   protected onTouched: () => void = () => {};
@@ -69,6 +83,7 @@ export class RadioComponent implements ControlValueAccessor {
 
   /** Seleciona uma opção. */
   select(opt: RadioOption): void {
+    if (this.isDisabled()) return;
     this.value = opt.value;
     this.onChange(this.value);
     this.onTouched();
@@ -89,6 +104,6 @@ export class RadioComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    // TODO: adicionar suporte a disabled se necessário
+    this.disabledByForm.set(isDisabled);
   }
 }

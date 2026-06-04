@@ -2,6 +2,7 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
   signal,
@@ -58,8 +59,19 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   readonly divider = input(true, { transform: booleanAttribute });
 
+  /** Desabilita o grupo inteiro. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Values marcados. */
   protected readonly value = signal<string[]>([]);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   private onChange: (value: string[]) => void = () => {};
   private onTouched: () => void = () => {};
@@ -69,6 +81,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
 
   protected toggle(option: CheckboxOption): void {
+    if (this.isDisabled()) return;
     const current = this.value();
     const next = current.includes(option.value)
       ? current.filter((v) => v !== option.value)
@@ -90,5 +103,9 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabledByForm.set(isDisabled);
   }
 }

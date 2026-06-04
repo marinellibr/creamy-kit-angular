@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+:host[data-disabled] {
+  opacity: 0.5;
+
+  .search__control {
+    cursor: not-allowed;
+  }
+}
+
 /* Caixa — mesma do Input (gap 8px separa ícones e texto). */
 .search__control {
   display: flex;

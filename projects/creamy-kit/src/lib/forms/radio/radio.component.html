@@ -4,6 +4,8 @@
     class="radio__row"
     role="radio"
     [attr.aria-checked]="isSelected(opt)"
+    [attr.aria-disabled]="isDisabled()"
+    [disabled]="isDisabled()"
     (click)="select(opt)"
   >
     <span

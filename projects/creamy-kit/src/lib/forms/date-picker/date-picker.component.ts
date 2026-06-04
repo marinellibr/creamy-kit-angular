@@ -1,6 +1,8 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
   output,
@@ -43,6 +45,9 @@ import { ThemeService } from '../../core/theme.service';
   templateUrl: './date-picker.component.html',
   styleUrl: './date-picker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -69,8 +74,19 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** Rótulo do botão de cancelamento. */
   readonly cancelLabel = input<string>('Cancelar');
 
+  /** Desabilita o seletor (calendário e ações). @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Data selecionada (pendente até confirmar). */
   protected readonly selected = signal<Date | null>(null);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   /** Emitido ao confirmar, com a data escolhida. */
   readonly confirm = output<Date | null>();
@@ -89,6 +105,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   protected onConfirm(): void {
+    if (this.isDisabled()) return;
     const value = this.selected();
     this.onChange(value);
     this.onTouched();
@@ -120,5 +137,9 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabledByForm.set(isDisabled);
   }
 }

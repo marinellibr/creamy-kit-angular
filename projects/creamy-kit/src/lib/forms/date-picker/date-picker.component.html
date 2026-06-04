@@ -21,6 +21,7 @@
   <creamy-kit-calendar
     bare
     [footerValue]="infoText()"
+    [disabled]="isDisabled()"
     [ngModel]="selected()"
     (ngModelChange)="onCalendarChange($event)"
   />

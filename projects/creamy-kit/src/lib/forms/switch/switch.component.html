@@ -1,11 +1,13 @@
 <button
   type="button"
   class="switch"
-  [class.switch--on]="value"
+  [class.switch--on]="value()"
   [style.--switch-color]="color()"
   (click)="toggle()"
+  [disabled]="isDisabled()"
   role="switch"
-  [attr.aria-checked]="value"
+  [attr.aria-checked]="value()"
+  [attr.aria-disabled]="isDisabled()"
 >
   <span class="switch__thumb" aria-hidden="true"></span>
 </button>

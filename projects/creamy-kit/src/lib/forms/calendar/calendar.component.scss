@@ -6,6 +6,11 @@
   max-width: 320px;
 }
 
+:host[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .calendar {
   width: 100%;
   box-sizing: border-box;

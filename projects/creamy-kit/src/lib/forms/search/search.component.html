@@ -13,6 +13,7 @@
     type="text"
     [placeholder]="placeholder()"
     [value]="value()"
+    [disabled]="isDisabled()"
     (input)="onInput($event)"
     (focus)="onFocus()"
     (blur)="onBlur()"

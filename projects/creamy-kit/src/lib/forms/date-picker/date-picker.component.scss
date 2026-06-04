@@ -4,6 +4,11 @@
   max-width: 340px;
 }
 
+:host[data-disabled] .datepicker__actions {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .datepicker {
   width: 100%;
   box-sizing: border-box;

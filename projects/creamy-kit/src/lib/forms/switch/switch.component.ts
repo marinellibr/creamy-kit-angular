@@ -1,8 +1,11 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   forwardRef,
   input,
+  signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -42,23 +45,35 @@ export class SwitchComponent implements ControlValueAccessor {
   /** Cor do fundo quando ativo (CSS var ou valor direto). */
   readonly color = input<string>('var(--primary-base, #128cfe)');
 
+  /** Desabilita o switch. @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Estado do toggle. */
-  protected value: boolean = false;
+  protected readonly value = signal(false);
+
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
 
   protected onChange: (value: boolean) => void = () => {};
   protected onTouched: () => void = () => {};
 
   /** Toggle o estado. */
   toggle(): void {
-    this.value = !this.value;
-    this.onChange(this.value);
+    if (this.isDisabled()) return;
+    this.value.set(!this.value());
+    this.onChange(this.value());
     this.onTouched();
   }
 
   /* ControlValueAccessor implementation */
 
   writeValue(value: boolean): void {
-    this.value = value ?? false;
+    this.value.set(value ?? false);
   }
 
   registerOnChange(fn: (value: boolean) => void): void {
@@ -70,6 +85,6 @@ export class SwitchComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    // TODO: adicionar suporte a disabled se necessário
+    this.disabledByForm.set(isDisabled);
   }
 }

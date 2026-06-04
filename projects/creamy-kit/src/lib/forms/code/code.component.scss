@@ -2,6 +2,11 @@
   display: block;
 }
 
+.code__field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .code {
   display: flex;
   flex-direction: column;

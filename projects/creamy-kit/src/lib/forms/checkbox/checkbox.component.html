@@ -4,6 +4,8 @@
     class="checkbox__row"
     role="checkbox"
     [attr.aria-checked]="isSelected(opt)"
+    [attr.aria-disabled]="isDisabled()"
+    [disabled]="isDisabled()"
     (click)="toggle(opt)"
   >
     <span

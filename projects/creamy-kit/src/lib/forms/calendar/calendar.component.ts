@@ -67,6 +67,9 @@ export class CalendarComponent implements ControlValueAccessor {
    */
   readonly bare = input(false, { transform: booleanAttribute });
 
+  /** Desabilita o calendário (sem navegação nem seleção). @default false */
+  readonly disabled = input(false, { transform: booleanAttribute });
+
   /** Emitido ao selecionar um dia. */
   readonly dateChange = output<Date>();
 
@@ -79,12 +82,25 @@ export class CalendarComponent implements ControlValueAccessor {
   /** Primeiro dia do mês exibido. */
   protected readonly view = signal<Date>(startOfMonth(new Date()));
 
+  /** Disabled vindo do formulário reativo (`setDisabledState`). */
+  private readonly disabledByForm = signal(false);
+
+  /** Estado final de disabled (input OU formulário). */
+  readonly isDisabled = computed(
+    () => this.disabled() || this.disabledByForm(),
+  );
+
   private onChange: (value: Date | null) => void = () => {};
   private onTouched: () => void = () => {};
 
   @HostBinding('attr.data-bare')
   get hostBare(): '' | null {
     return this.bare() ? '' : null;
+  }
+
+  @HostBinding('attr.data-disabled')
+  get hostDisabled(): '' | null {
+    return this.isDisabled() ? '' : null;
   }
 
   /** Rótulo do mês exibido, ex.: "Fevereiro de 2026". */
@@ -140,16 +156,19 @@ export class CalendarComponent implements ControlValueAccessor {
   }
 
   protected prevMonth(): void {
+    if (this.isDisabled()) return;
     const d = this.view();
     this.view.set(new Date(d.getFullYear(), d.getMonth() - 1, 1));
   }
 
   protected nextMonth(): void {
+    if (this.isDisabled()) return;
     const d = this.view();
     this.view.set(new Date(d.getFullYear(), d.getMonth() + 1, 1));
   }
 
   protected selectDay(day: number): void {
+    if (this.isDisabled()) return;
     const v = this.view();
     const date = new Date(v.getFullYear(), v.getMonth(), day);
     this.selected.set(date);
@@ -179,6 +198,10 @@ export class CalendarComponent implements ControlValueAccessor {
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabledByForm.set(isDisabled);
   }
 }
 

@@ -1,3 +1,8 @@
+:host[data-disabled='true'] .tab-bar {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .tab-bar {
   position: fixed;
   bottom: 0;

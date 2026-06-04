@@ -13,6 +13,7 @@
         autocomplete="off"
         maxlength="1"
         [value]="charAt(i)"
+        [disabled]="isDisabled()"
         (input)="onInput($event, i)"
         (keydown)="onKeydown($event, i)"
         (paste)="onPaste($event)"
