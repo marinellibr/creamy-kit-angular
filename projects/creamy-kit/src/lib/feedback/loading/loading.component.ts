@@ -7,7 +7,7 @@ import {
 
 import { IconComponent } from '../../media/icon/icon.component';
 
-export type LoadingSize = 'xsmall' | 'small' | 'medium' | 'large';
+export type LoadingSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type LoadingVariant = 'primary' | 'neutral' | 'on-brand';
 
 /**
@@ -18,6 +18,7 @@ const ICON_PX: Record<LoadingSize, number> = {
   small: 4,
   medium: 6,
   large: 12,
+  xlarge: 24,
 };
 
 /**

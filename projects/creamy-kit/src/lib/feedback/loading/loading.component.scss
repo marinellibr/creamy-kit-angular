@@ -33,6 +33,11 @@
   height: 64px;
 }
 
+:host.kit-loading--xlarge {
+  width: 128px;
+  height: 128px;
+}
+
 /* ----- Cores ----- */
 :host.kit-loading--primary {
   color: var(--primary-base, #128cfe);
