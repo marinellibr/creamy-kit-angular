@@ -10,12 +10,15 @@ import { IconComponent } from '../../media/icon/icon.component';
 export type LoadingSize = 'xsmall' | 'small' | 'medium' | 'large';
 export type LoadingVariant = 'primary' | 'neutral' | 'on-brand';
 
-/** Tamanho (px) do ícone central por size, ~31% da caixa (Figma: 20px em 64px). */
+/**
+ * Tamanho (px) do ícone central por size (25% da caixa). Um pouco menor que o
+ * Figma (~31%) para abrir ~3px de respiro entre o ícone e os raios.
+ */
 const ICON_PX: Record<LoadingSize, number> = {
-  xsmall: 5,
-  small: 8,
-  medium: 10,
-  large: 20,
+  xsmall: 4,
+  small: 6,
+  medium: 8,
+  large: 16,
 };
 
 /**
