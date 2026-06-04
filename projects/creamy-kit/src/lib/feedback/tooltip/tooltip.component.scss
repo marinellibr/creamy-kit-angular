@@ -1,0 +1,48 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 8px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: var(--action-neutral-base, #f0f0f0);
+  color: var(--text-on-brand, #128cfe);
+}
+
+/* ----- Variantes ----- */
+:host.kit-tooltip--default {
+  background: var(--action-neutral-base, #f0f0f0);
+  color: var(--text-on-brand, #128cfe);
+}
+
+:host.kit-tooltip--contrast {
+  background: var(--background-variant-contrast, #ffffff);
+  color: var(--text-default, #333333);
+}
+
+/* ----- Conteúdo interno ----- */
+.kit-tooltip__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.kit-tooltip__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.kit-tooltip__text {
+  font-size: 0.75rem; /* small body */
+  font-weight: 500;
+  color: currentColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,1 +1,10 @@
-<p>tooltip works!</p>
+<div class="kit-tooltip__content">
+  @if (icon()) {
+    <creamy-kit-icon
+      [name]="icon()!"
+      [size]="20"
+      class="kit-tooltip__icon"
+    />
+  }
+  <span class="kit-tooltip__text">{{ text() }}</span>
+</div>
