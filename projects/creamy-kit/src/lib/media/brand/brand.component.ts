@@ -2,12 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
-/** Base URL do repositório `creamy-kit-resources` (brands/). */
-const BRAND_BASE_URL =
-  'https://raw.githubusercontent.com/marinellibr/creamy-kit-resources/main/brands';
+import { CREAMY_KIT_RESOURCES } from '../../core/resources';
 
 /**
  * Componente de Brand do Creamy Kit.
@@ -41,7 +40,9 @@ export class BrandComponent {
   /** Extensão do arquivo. @default 'svg' */
   readonly ext = input<string>('svg');
 
+  private readonly resources = inject(CREAMY_KIT_RESOURCES);
+
   protected readonly src = computed(
-    () => `${BRAND_BASE_URL}/${this.name()}.${this.ext()}`,
+    () => `${this.resources.brandsBaseUrl}/${this.name()}.${this.ext()}`,
   );
 }

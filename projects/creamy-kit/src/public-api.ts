@@ -4,6 +4,9 @@
  * componente são exportadas como componentes próprios.
  */
 
+// core / configuração
+export * from './lib/core/resources';
+
 // actions
 export * from './lib/actions/button/button.component';
 

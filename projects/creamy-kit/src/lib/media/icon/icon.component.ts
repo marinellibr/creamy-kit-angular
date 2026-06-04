@@ -2,15 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
-/**
- * Base URL do repositório `creamy-kit-resources` (icons/).
- * Mantida no componente para evitar dependência cruzada com o consumidor.
- */
-const ICON_BASE_URL =
-  'https://raw.githubusercontent.com/marinellibr/creamy-kit-resources/main/icons';
+import { CREAMY_KIT_RESOURCES } from '../../core/resources';
 
 /**
  * Componente de Ícone do Creamy Kit.
@@ -63,8 +59,10 @@ export class IconComponent {
   /** Rótulo acessível opcional. Default = `name`. */
   readonly ariaLabel = input<string | undefined>(undefined);
 
+  private readonly resources = inject(CREAMY_KIT_RESOURCES);
+
   /** URL `mask-image: url(...)` montada a partir do `name`. */
   readonly maskImageUrl = computed(
-    () => `url("${ICON_BASE_URL}/${this.name()}.svg")`,
+    () => `url("${this.resources.iconsBaseUrl}/${this.name()}.svg")`,
   );
 }

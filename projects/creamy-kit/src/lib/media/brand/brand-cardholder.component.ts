@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 
-/** Base URL do repositório `creamy-kit-resources` (brands/). */
-const BRAND_BASE_URL =
-  'https://raw.githubusercontent.com/marinellibr/creamy-kit-resources/main/brands';
+import { CREAMY_KIT_RESOURCES } from '../../core/resources';
+import { buildBrandUrl } from './brand.util';
 
 /**
  * Logo de marca no formato cardholder (selo para cartões) do Creamy Kit.
@@ -33,9 +38,10 @@ export class BrandCardholderComponent {
   /** Nome da marca (arquivo em `brands/`, sem extensão). */
   readonly brandName = input.required<string>();
 
+  private readonly resources = inject(CREAMY_KIT_RESOURCES);
+
   /** URL final do SVG, derivada de `brandName`. */
-  readonly brandUrl = computed(() => {
-    const name = this.brandName().toLowerCase().replace(/\s+/g, '_');
-    return `${BRAND_BASE_URL}/${name}_cardholder.svg`;
-  });
+  readonly brandUrl = computed(() =>
+    buildBrandUrl(this.resources.brandsBaseUrl, this.brandName(), 'cardholder'),
+  );
 }
