@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -38,16 +37,14 @@ export type SnackbarFeedback =
   templateUrl: './snackbar.component.html',
   styleUrl: './snackbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'attr.role': 'status',
+    '[attr.data-feedback]': 'feedback()',
+  },
 })
 export class SnackbarComponent {
   constructor(private readonly themeService: ThemeService) {}
 
   /** Semântica de cor. @default 'information' */
   readonly feedback = input<SnackbarFeedback>('information');
-
-  @HostBinding('attr.role') readonly role = 'status';
-
-  @HostBinding('attr.data-feedback') get hostFeedback() {
-    return this.feedback();
-  }
 }

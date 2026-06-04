@@ -5,14 +5,14 @@ import {
   computed,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   inject,
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Opção exibida pelo Dropdown.
@@ -52,6 +52,12 @@ export type DropdownVariant = 'default' | 'on-brand';
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-open]': "open() ? '' : null",
+    '[attr.data-error]': "error() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -60,10 +66,12 @@ export type DropdownVariant = 'default' | 'on-brand';
     },
   ],
 })
-export class DropdownComponent implements ControlValueAccessor {
+export class DropdownComponent extends BaseValueAccessor<string> {
   private readonly host = inject(ElementRef<HTMLElement>);
 
-  constructor(private readonly themeService: ThemeService) {}
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Variação de estilo.
@@ -109,8 +117,6 @@ export class DropdownComponent implements ControlValueAccessor {
   /** Menu aberto? */
   protected readonly open = signal(false);
 
-  private readonly disabledByForm = signal(false);
-
   protected readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm()
   );
@@ -119,29 +125,6 @@ export class DropdownComponent implements ControlValueAccessor {
   protected readonly selectedLabel = computed(
     () => this.options().find((o) => o.value === this.value())?.label ?? ''
   );
-
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-variant')
-  get hostVariant(): DropdownVariant {
-    return this.variant();
-  }
-
-  @HostBinding('attr.data-open')
-  get hostOpen(): '' | null {
-    return this.open() ? '' : null;
-  }
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.error() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   protected toggle(): void {
     if (this.isDisabled()) {
@@ -168,19 +151,7 @@ export class DropdownComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     this.value.set(value ?? '');
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

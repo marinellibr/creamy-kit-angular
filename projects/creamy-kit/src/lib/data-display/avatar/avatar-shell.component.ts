@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -27,6 +26,12 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
   `,
   styleUrl: './avatar-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-size]': 'size()',
+    '[attr.data-contrast]': 'contrast()',
+    '[attr.data-surface]': "transparent() ? 'transparent' : 'filled'",
+    '[attr.data-ring]': "progress() > 0 ? '' : null",
+  },
 })
 export class AvatarShellComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -47,17 +52,4 @@ export class AvatarShellComponent {
     Math.max(0, Math.min(100, this.percentage())),
   );
   protected readonly progressCss = computed(() => `${this.progress()}%`);
-
-  @HostBinding('attr.data-size') get hostSize() {
-    return this.size();
-  }
-  @HostBinding('attr.data-contrast') get hostContrast() {
-    return this.contrast();
-  }
-  @HostBinding('attr.data-surface') get hostSurface() {
-    return this.transparent() ? 'transparent' : 'filled';
-  }
-  @HostBinding('attr.data-ring') get hostRing() {
-    return this.progress() > 0 ? '' : null;
-  }
 }

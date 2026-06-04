@@ -4,13 +4,13 @@ import {
   Component,
   computed,
   forwardRef,
-  HostBinding,
   input,
   output,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Componente de Calendar do Creamy Kit.
@@ -38,6 +38,10 @@ import { ThemeService } from '../../core/theme.service';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-bare]': "bare() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -46,8 +50,10 @@ import { ThemeService } from '../../core/theme.service';
     },
   ],
 })
-export class CalendarComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class CalendarComponent extends BaseValueAccessor<Date | null> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /** Título (negrito) do rodapé. Vazio = sem título. */
   readonly footerLabel = input<string>('');
@@ -82,26 +88,10 @@ export class CalendarComponent implements ControlValueAccessor {
   /** Primeiro dia do mês exibido. */
   protected readonly view = signal<Date>(startOfMonth(new Date()));
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
-
-  private onChange: (value: Date | null) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-bare')
-  get hostBare(): '' | null {
-    return this.bare() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   /** Rótulo do mês exibido, ex.: "Fevereiro de 2026". */
   protected readonly monthLabel = computed(() => {
@@ -179,7 +169,7 @@ export class CalendarComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: Date | string | null): void {
+  override writeValue(value: Date | string | null): void {
     if (!value) {
       this.selected.set(null);
       return;
@@ -190,18 +180,6 @@ export class CalendarComponent implements ControlValueAccessor {
     }
     this.selected.set(d);
     this.view.set(startOfMonth(d));
-  }
-
-  registerOnChange(fn: (value: Date | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }
 

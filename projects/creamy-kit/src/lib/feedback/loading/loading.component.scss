@@ -48,7 +48,7 @@
 }
 
 :host.kit-loading--on-brand {
-  color: #ffffff;
+  color: var(--white, #ffffff);
 }
 
 /* ----- Radial de traços ----- */

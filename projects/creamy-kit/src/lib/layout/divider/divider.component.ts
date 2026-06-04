@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -38,6 +37,10 @@ export type DividerColor =
   templateUrl: './divider.component.html',
   styleUrl: './divider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-weight]': 'weight()',
+    '[attr.data-color]': 'color()',
+  },
 })
 export class DividerComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -60,14 +63,4 @@ export class DividerComponent {
    * @default 'border-medium'
    */
   readonly color = input<DividerColor>('border-medium');
-
-  @HostBinding('attr.data-weight')
-  get hostWeight(): DividerWeight {
-    return this.weight();
-  }
-
-  @HostBinding('attr.data-color')
-  get hostColor(): DividerColor {
-    return this.color();
-  }
 }

@@ -7,9 +7,10 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DividerComponent } from '../../layout/divider/divider.component';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Opção do Checkbox.
@@ -47,8 +48,10 @@ export interface CheckboxOption {
     },
   ],
 })
-export class CheckboxComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class CheckboxComponent extends BaseValueAccessor<string[]> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /** Opções exibidas. */
   readonly options = input<CheckboxOption[]>([]);
@@ -65,16 +68,10 @@ export class CheckboxComponent implements ControlValueAccessor {
   /** Values marcados. */
   protected readonly value = signal<string[]>([]);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
-
-  private onChange: (value: string[]) => void = () => {};
-  private onTouched: () => void = () => {};
 
   protected isSelected(option: CheckboxOption): boolean {
     return this.value().includes(option.value);
@@ -93,19 +90,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string[]): void {
+  override writeValue(value: string[]): void {
     this.value.set(Array.isArray(value) ? value : []);
-  }
-
-  registerOnChange(fn: (value: string[]) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

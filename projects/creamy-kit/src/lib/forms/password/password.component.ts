@@ -4,12 +4,12 @@ import {
   Component,
   computed,
   forwardRef,
-  HostBinding,
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Variações de estilo do Password.
@@ -42,6 +42,12 @@ export type PasswordVariant = 'default' | 'on-brand';
   templateUrl: './password.component.html',
   styleUrl: './password.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-revealed]': "revealed() ? '' : null",
+    '[attr.data-error]': "error() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -50,8 +56,10 @@ export type PasswordVariant = 'default' | 'on-brand';
     },
   ],
 })
-export class PasswordComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class PasswordComponent extends BaseValueAccessor<string> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Variação de estilo.
@@ -92,34 +100,9 @@ export class PasswordComponent implements ControlValueAccessor {
   /** Senha visível (texto) ou mascarada (círculos)? */
   protected readonly revealed = signal(false);
 
-  private readonly disabledByForm = signal(false);
-
   protected readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm()
   );
-
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-variant')
-  get hostVariant(): PasswordVariant {
-    return this.variant();
-  }
-
-  @HostBinding('attr.data-revealed')
-  get hostRevealed(): '' | null {
-    return this.revealed() ? '' : null;
-  }
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.error() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   protected onInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -137,19 +120,7 @@ export class PasswordComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     this.value.set(value ?? '');
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

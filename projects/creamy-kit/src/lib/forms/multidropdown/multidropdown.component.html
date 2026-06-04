@@ -9,6 +9,8 @@
       class="multidropdown__control"
       [disabled]="isDisabled()"
       (click)="toggleMenu()"
+      aria-haspopup="listbox"
+      [attr.aria-expanded]="open()"
     >
       <span
         class="multidropdown__value"

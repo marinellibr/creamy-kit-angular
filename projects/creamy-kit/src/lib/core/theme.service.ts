@@ -38,6 +38,9 @@ export class ThemeService {
         --background-primary: #128cfe;
         --background-secondary: #00bfff;
 
+        --white: #ffffff;
+        --black: #000000;
+
         --neutral-base: #484848;
         --neutral-variant: #000000;
 

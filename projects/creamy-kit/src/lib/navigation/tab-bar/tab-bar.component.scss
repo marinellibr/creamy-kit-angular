@@ -1,4 +1,4 @@
-:host[data-disabled='true'] .tab-bar {
+:host([data-disabled]) .tab-bar {
   opacity: 0.5;
   pointer-events: none;
 }

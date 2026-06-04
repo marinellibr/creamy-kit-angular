@@ -9,6 +9,8 @@
       class="dropdown__control"
       [disabled]="isDisabled()"
       (click)="toggle()"
+      aria-haspopup="listbox"
+      [attr.aria-expanded]="open()"
     >
       <span
         class="dropdown__value"

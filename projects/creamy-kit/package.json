@@ -10,10 +10,6 @@
   },
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./public-api.d.ts",
-      "default": "./fesm2022/creamy-kit.mjs"
-    },
     "./styles": {
       "default": "./styles/index.css"
     }

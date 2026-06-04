@@ -48,7 +48,7 @@
 
 .alert__title {
   font-weight: 500;
-  color: #484848;
+  color: var(--text-heading-2, #484848);
 }
 
 .alert__content {

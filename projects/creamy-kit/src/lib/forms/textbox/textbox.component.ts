@@ -4,13 +4,13 @@ import {
   Component,
   computed,
   forwardRef,
-  HostBinding,
   input,
   numberAttribute,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Variações de estilo do Textbox.
@@ -43,6 +43,11 @@ export type TextboxVariant = 'default' | 'on-brand';
   templateUrl: './textbox.component.html',
   styleUrl: './textbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-error]': "error() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -51,8 +56,10 @@ export type TextboxVariant = 'default' | 'on-brand';
     },
   ],
 })
-export class TextboxComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class TextboxComponent extends BaseValueAccessor<string> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Variação de estilo.
@@ -96,8 +103,6 @@ export class TextboxComponent implements ControlValueAccessor {
   /** Valor atual. */
   protected readonly value = signal('');
 
-  private readonly disabledByForm = signal(false);
-
   protected readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm()
   );
@@ -106,24 +111,6 @@ export class TextboxComponent implements ControlValueAccessor {
   protected readonly hasFooter = computed(
     () => !!this.helper() || this.maxLength() != null
   );
-
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-variant')
-  get hostVariant(): TextboxVariant {
-    return this.variant();
-  }
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.error() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   protected onInput(event: Event): void {
     const value = (event.target as HTMLTextAreaElement).value;
@@ -137,19 +124,7 @@ export class TextboxComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     this.value.set(value ?? '');
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

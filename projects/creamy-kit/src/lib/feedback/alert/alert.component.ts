@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
   output,
   signal,
@@ -40,6 +39,10 @@ export type AlertFeedback = 'information' | 'success' | 'error';
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'attr.role': 'alert',
+    '[attr.data-feedback]': 'feedback()',
+  },
 })
 export class AlertComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -64,11 +67,5 @@ export class AlertComponent {
   protected dismiss(): void {
     this.dismissed.set(true);
     this.closed.emit();
-  }
-
-  @HostBinding('attr.role') readonly role = 'alert';
-
-  @HostBinding('attr.data-feedback') get hostFeedback() {
-    return this.feedback();
   }
 }

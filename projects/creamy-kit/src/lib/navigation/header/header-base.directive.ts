@@ -1,4 +1,4 @@
-import { Directive, HostBinding, inject, input } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
 
 /**
@@ -14,14 +14,14 @@ export type HeaderTheme = 'brand' | 'light';
  * host). Não use diretamente — estenda nas variações. O tipo `HeaderTheme`
  * é público.
  */
-@Directive()
+@Directive({
+  host: {
+    '[attr.data-theme]': 'theme()',
+  },
+})
 export abstract class HeaderBase {
   protected readonly themeService = inject(ThemeService);
 
   /** Tema. @default 'brand' */
   readonly theme = input<HeaderTheme>('brand');
-
-  @HostBinding('attr.data-theme') get hostTheme() {
-    return this.theme();
-  }
 }

@@ -7,7 +7,8 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Componente de Switch (Toggle) do Creamy Kit.
@@ -41,7 +42,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class SwitchComponent implements ControlValueAccessor {
+export class SwitchComponent extends BaseValueAccessor<boolean> {
   /** Cor do fundo quando ativo (CSS var ou valor direto). */
   readonly color = input<string>('var(--primary-base, #128cfe)');
 
@@ -51,16 +52,10 @@ export class SwitchComponent implements ControlValueAccessor {
   /** Estado do toggle. */
   protected readonly value = signal(false);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
-
-  protected onChange: (value: boolean) => void = () => {};
-  protected onTouched: () => void = () => {};
 
   /** Toggle o estado. */
   toggle(): void {
@@ -70,21 +65,9 @@ export class SwitchComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  /* ControlValueAccessor implementation */
+  // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: boolean): void {
+  override writeValue(value: boolean): void {
     this.value.set(value ?? false);
-  }
-
-  registerOnChange(fn: (value: boolean) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

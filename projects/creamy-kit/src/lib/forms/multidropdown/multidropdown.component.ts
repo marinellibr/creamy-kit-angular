@@ -5,15 +5,15 @@ import {
   computed,
   ElementRef,
   forwardRef,
-  HostBinding,
   HostListener,
   inject,
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { DropdownOption } from '../dropdown/dropdown.component';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Variações de estilo do MultiDropdown.
@@ -46,6 +46,12 @@ export type MultiDropdownVariant = 'default';
   templateUrl: './multidropdown.component.html',
   styleUrl: './multidropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-open]': "open() ? '' : null",
+    '[attr.data-error]': "error() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -54,10 +60,12 @@ export type MultiDropdownVariant = 'default';
     },
   ],
 })
-export class MultiDropdownComponent implements ControlValueAccessor {
+export class MultiDropdownComponent extends BaseValueAccessor<string[]> {
   private readonly host = inject(ElementRef<HTMLElement>);
 
-  constructor(private readonly themeService: ThemeService) {}
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Variação de estilo.
@@ -103,8 +111,6 @@ export class MultiDropdownComponent implements ControlValueAccessor {
   /** Menu aberto? */
   protected readonly open = signal(false);
 
-  private readonly disabledByForm = signal(false);
-
   protected readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm()
   );
@@ -117,29 +123,6 @@ export class MultiDropdownComponent implements ControlValueAccessor {
       .map((o) => o.label)
       .join(', ');
   });
-
-  private onChange: (value: string[]) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-variant')
-  get hostVariant(): MultiDropdownVariant {
-    return this.variant();
-  }
-
-  @HostBinding('attr.data-open')
-  get hostOpen(): '' | null {
-    return this.open() ? '' : null;
-  }
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.error() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   protected isSelected(option: DropdownOption): boolean {
     return this.value().includes(option.value);
@@ -172,19 +155,7 @@ export class MultiDropdownComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string[]): void {
+  override writeValue(value: string[]): void {
     this.value.set(Array.isArray(value) ? value : []);
-  }
-
-  registerOnChange(fn: (value: string[]) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

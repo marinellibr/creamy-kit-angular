@@ -9,13 +9,13 @@ import {
   signal,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { ButtonComponent } from '../../actions/button/button.component';
 import { CalendarComponent } from '../calendar/calendar.component';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Componente de DatePicker do Creamy Kit.
@@ -56,8 +56,10 @@ import { ThemeService } from '../../core/theme.service';
     },
   ],
 })
-export class DatePickerComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class DatePickerComponent extends BaseValueAccessor<Date | null> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /** Título do cabeçalho. */
   readonly title = input<string>('Selecione a data');
@@ -80,9 +82,6 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** Data selecionada (pendente até confirmar). */
   protected readonly selected = signal<Date | null>(null);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
@@ -96,9 +95,6 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   /** Emitido ao fechar pelo X. */
   readonly closed = output<void>();
-
-  private onChange: (value: Date | null) => void = () => {};
-  private onTouched: () => void = () => {};
 
   protected onCalendarChange(date: Date | null): void {
     this.selected.set(date);
@@ -122,24 +118,12 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: Date | string | null): void {
+  override writeValue(value: Date | string | null): void {
     if (!value) {
       this.selected.set(null);
       return;
     }
     const d = value instanceof Date ? value : new Date(value);
     this.selected.set(isNaN(d.getTime()) ? null : d);
-  }
-
-  registerOnChange(fn: (value: Date | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }
