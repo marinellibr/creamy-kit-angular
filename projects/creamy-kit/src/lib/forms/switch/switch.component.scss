@@ -1,0 +1,45 @@
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 52px;
+  height: 32px;
+  padding: 2px;
+  border: none;
+  border-radius: 16px;
+  background: var(--border-medium, #d2d2d2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-base, #128cfe);
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &--on {
+    background-color: var(--switch-color);
+    justify-content: flex-end;
+  }
+}
+
+.switch__thumb {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch,
+  .switch__thumb {
+    transition: none;
+  }
+}
