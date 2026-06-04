@@ -25,8 +25,12 @@ describe('LoadingComponent', () => {
     expect(component.size()).toBe('medium');
   });
 
-  it('should have default variant as default', () => {
-    expect(component.variant()).toBe('default');
+  it('should have default variant as primary', () => {
+    expect(component.variant()).toBe('primary');
+  });
+
+  it('should default the center icon to circle_variant', () => {
+    expect(component.icon()).toBe('circle_variant');
   });
 
   it('should accept custom size', () => {
@@ -35,22 +39,41 @@ describe('LoadingComponent', () => {
   });
 
   it('should accept custom variant', () => {
-    fixture.componentRef.setInput('variant', 'subtle');
-    expect(component.variant()).toBe('subtle');
+    fixture.componentRef.setInput('variant', 'neutral');
+    expect(component.variant()).toBe('neutral');
   });
 
-  it('should render spinner SVG', () => {
-    const svg = fixture.nativeElement.querySelector('svg');
-    expect(svg).toBeTruthy();
+  it('should map size to the center icon px', () => {
+    fixture.componentRef.setInput('size', 'large');
+    expect(component.iconPx()).toBe(20);
+    fixture.componentRef.setInput('size', 'xsmall');
+    expect(component.iconPx()).toBe(5);
   });
 
-  it('should have correct CSS classes', () => {
+  it('should render 8 spokes', () => {
+    const spokes = fixture.nativeElement.querySelectorAll('.kit-loading__spoke');
+    expect(spokes.length).toBe(8);
+  });
+
+  it('should render the center icon by default', () => {
+    const icon = fixture.nativeElement.querySelector('creamy-kit-icon');
+    expect(icon).toBeTruthy();
+  });
+
+  it('should hide the center icon when showIcon is false', () => {
+    fixture.componentRef.setInput('showIcon', false);
+    fixture.detectChanges();
+    const icon = fixture.nativeElement.querySelector('creamy-kit-icon');
+    expect(icon).toBeFalsy();
+  });
+
+  it('should apply size and variant classes on the host', () => {
     fixture.componentRef.setInput('size', 'small');
-    fixture.componentRef.setInput('variant', 'subtle');
+    fixture.componentRef.setInput('variant', 'on-brand');
     fixture.detectChanges();
 
-    const element = fixture.nativeElement.querySelector('.kit-loading');
-    expect(element.classList.contains('kit-loading--small')).toBeTruthy();
-    expect(element.classList.contains('kit-loading--subtle')).toBeTruthy();
+    const host: HTMLElement = fixture.nativeElement;
+    expect(host.classList.contains('kit-loading--small')).toBeTruthy();
+    expect(host.classList.contains('kit-loading--on-brand')).toBeTruthy();
   });
 });

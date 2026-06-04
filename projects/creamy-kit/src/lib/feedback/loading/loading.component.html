@@ -1,19 +1,21 @@
-<div class="kit-loading" [class]="'kit-loading--' + size() + ' kit-loading--' + variant()">
-  <div class="kit-loading__spinner">
-    <svg
-      class="kit-loading__svg"
-      viewBox="0 0 50 50"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        class="kit-loading__circle"
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-      />
-    </svg>
-  </div>
-</div>
+<svg
+  class="kit-loading__spokes"
+  viewBox="0 0 20 20"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <!-- 8 traços em sentido horário a partir do topo (N) -->
+  <path class="kit-loading__spoke" style="--spoke: 0" d="M10 3V6.01778" />
+  <path class="kit-loading__spoke" style="--spoke: 1" d="M14.9467 5.05334L12.8156 7.18446" />
+  <path class="kit-loading__spoke" style="--spoke: 2" d="M13.9822 10H17" />
+  <path class="kit-loading__spoke" style="--spoke: 3" d="M12.8156 12.8156L14.9467 14.9467" />
+  <path class="kit-loading__spoke" style="--spoke: 4" d="M10 13.9822V17" />
+  <path class="kit-loading__spoke" style="--spoke: 5" d="M7.18446 12.8156L5.05334 14.9467" />
+  <path class="kit-loading__spoke" style="--spoke: 6" d="M3 10H6.01778" />
+  <path class="kit-loading__spoke" style="--spoke: 7" d="M5.05334 5.05334L7.18446 7.18446" />
+</svg>
+
+@if (showIcon()) {
+  <creamy-kit-icon class="kit-loading__icon" [name]="icon()" [size]="iconPx()" />
+}
