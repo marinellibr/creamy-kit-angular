@@ -1,1 +1,21 @@
-<p>radio works!</p>
+@for (opt of options(); track opt.value) {
+  <button
+    type="button"
+    class="radio__row"
+    role="radio"
+    [attr.aria-checked]="isSelected(opt)"
+    (click)="select(opt)"
+  >
+    <span
+      class="radio__icon"
+      [style.--radio-color]="color()"
+      aria-hidden="true"
+    >
+      <creamy-kit-icon name="radio_button_base" [size]="24" />
+      @if (isSelected(opt)) {
+        <creamy-kit-icon class="radio__icon--variant" name="radio_button_variant" [size]="24" />
+      }
+    </span>
+    <span class="radio__label">{{ opt.label }}</span>
+  </button>
+}

@@ -1,0 +1,59 @@
+.radio__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-base, #128cfe);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.radio__icon {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+
+  creamy-kit-icon {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Default: base cinza, variant azul */
+  creamy-kit-icon:first-child {
+    color: var(--neutral-base, #484848);
+  }
+
+  /* Se color custom, ambos usam a mesma cor */
+  @supports (--custom: var(--radio-color)) {
+    &[style*="--radio-color"] creamy-kit-icon {
+      color: var(--radio-color);
+    }
+  }
+
+  /* Variant azul no default (só sobreposto quando selected) */
+  &:not([style*="--radio-color"]) .radio__icon--variant {
+    color: var(--primary-base, #128cfe);
+  }
+}
+
+.radio__label {
+  color: var(--text-body, #2a2a2a);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
