@@ -11,14 +11,13 @@ export type LoadingSize = 'xsmall' | 'small' | 'medium' | 'large';
 export type LoadingVariant = 'primary' | 'neutral' | 'on-brand';
 
 /**
- * Tamanho (px) do ícone central por size (25% da caixa). Um pouco menor que o
- * Figma (~31%) para abrir ~3px de respiro entre o ícone e os raios.
+ * Tamanho (px) do ícone central por size (18% da caixa, maior respiro de ~5-6px).
  */
 const ICON_PX: Record<LoadingSize, number> = {
-  xsmall: 4,
-  small: 6,
-  medium: 8,
-  large: 16,
+  xsmall: 3,
+  small: 4,
+  medium: 6,
+  large: 12,
 };
 
 /**
