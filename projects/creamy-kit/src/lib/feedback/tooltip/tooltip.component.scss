@@ -8,18 +8,18 @@
   border-radius: 22px;
   box-sizing: border-box;
   background: var(--action-neutral-base, #f0f0f0);
-  color: var(--text-body-1, #333333);
+  color: var(--action-primary-contrast, #128cfe);
 }
 
 /* ----- Variantes ----- */
 :host.kit-tooltip--default {
   background: var(--action-neutral-base, #f0f0f0);
-  color: var(--text-body-1, #333333);
+  color: var(--action-primary-contrast, #128cfe);
 }
 
 :host.kit-tooltip--contrast {
-  background: var(--primary-base, #128cfe);
-  color: var(--text-body-1, #333333);
+  background: var(--background-variant, #ffffff);
+  color: var(--action-neutral-base, #f0f0f0);
 }
 
 /* ----- Conteúdo interno ----- */
