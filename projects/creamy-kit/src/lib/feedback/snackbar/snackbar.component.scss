@@ -15,7 +15,7 @@
   --kit-snackbar-bg: var(--feedbacks-error);
 }
 :host([data-feedback='black']) {
-  --kit-snackbar-bg: #000000;
+  --kit-snackbar-bg: var(--black, #000000);
 }
 
 /* Fundo claro → texto e ícone escuros. */
@@ -24,7 +24,7 @@
   --kit-snackbar-fg: var(--text-body);
 }
 :host([data-feedback='white']) {
-  --kit-snackbar-bg: #ffffff;
+  --kit-snackbar-bg: var(--white, #ffffff);
   --kit-snackbar-fg: var(--text-body);
 }
 

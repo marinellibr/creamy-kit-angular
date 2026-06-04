@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -27,14 +26,13 @@ export type TagColor = 'neutral' | 'primary' | 'success' | 'error' | 'alert';
   template: `<span class="tag"><ng-content /></span>`,
   styleUrl: './tag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-color]': 'color()',
+  },
 })
 export class TagComponent {
   constructor(private readonly themeService: ThemeService) {}
 
   /** Cor semântica. @default 'neutral' */
   readonly color = input<TagColor>('neutral');
-
-  @HostBinding('attr.data-color') get hostColor() {
-    return this.color();
-  }
 }

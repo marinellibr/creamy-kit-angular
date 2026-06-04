@@ -5,13 +5,13 @@ import {
   computed,
   ElementRef,
   forwardRef,
-  HostBinding,
   input,
   signal,
   viewChildren,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Quantidade de campos do Code.
@@ -37,6 +37,9 @@ export type CodeLength = 4 | 6;
   templateUrl: './code.component.html',
   styleUrl: './code.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-error]': "error() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -45,8 +48,10 @@ export type CodeLength = 4 | 6;
     },
   ],
 })
-export class CodeComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class CodeComponent extends BaseValueAccessor<string> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Quantidade de campos.
@@ -71,9 +76,6 @@ export class CodeComponent implements ControlValueAccessor {
   /** Caracteres de cada campo. */
   protected readonly chars = signal<string[]>([]);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
@@ -86,14 +88,6 @@ export class CodeComponent implements ControlValueAccessor {
 
   /** Referências aos inputs nativos para controle de foco. */
   private readonly boxes = viewChildren<ElementRef<HTMLInputElement>>('box');
-
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.error() ? '' : null;
-  }
 
   protected charAt(index: number): string {
     return this.chars()[index] ?? '';
@@ -163,24 +157,12 @@ export class CodeComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     const text = value ?? '';
     const chars = Array.from(
       { length: this.length() },
       (_, i) => text[i] ?? ''
     );
     this.chars.set(chars);
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

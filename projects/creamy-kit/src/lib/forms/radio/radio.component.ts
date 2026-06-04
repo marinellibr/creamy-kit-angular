@@ -7,8 +7,9 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconComponent } from '../../media/icon/icon.component';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Opção de RadioButton.
@@ -52,7 +53,7 @@ export interface RadioOption {
     },
   ],
 })
-export class RadioComponent implements ControlValueAccessor {
+export class RadioComponent extends BaseValueAccessor<string | null> {
   /** Opções exibidas. */
   readonly options = input<RadioOption[]>([]);
 
@@ -65,16 +66,10 @@ export class RadioComponent implements ControlValueAccessor {
   /** Valor selecionado (string). */
   protected value: string | null = null;
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
-
-  protected onChange: (value: string | null) => void = () => {};
-  protected onTouched: () => void = () => {};
 
   /** Verifica se uma opção está selecionada. */
   isSelected(opt: RadioOption): boolean {
@@ -89,21 +84,9 @@ export class RadioComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  /* ControlValueAccessor implementation */
+  // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string | null): void {
+  override writeValue(value: string | null): void {
     this.value = value;
-  }
-
-  registerOnChange(fn: (value: string | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

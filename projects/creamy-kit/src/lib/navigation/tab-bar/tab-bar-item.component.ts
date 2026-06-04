@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 import { IconComponent } from '../../media/icon/icon.component';
 
 /**
@@ -31,4 +31,7 @@ export class TabBarItemComponent {
 
   /** Valor identificador do item (para seleção). */
   readonly value = input.required<string>();
+
+  /** Se este item está selecionado (gerenciado pelo TabBarComponent pai). */
+  readonly selected = model(false);
 }

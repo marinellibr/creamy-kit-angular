@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
   signal,
 } from '@angular/core';
@@ -35,6 +34,10 @@ export type ImageSize = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large';
   templateUrl: './image.component.html',
   styleUrl: './image.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-size]': 'size()',
+    '[attr.data-error]': "errored() ? '' : null",
+  },
 })
 export class ImageComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -53,16 +56,6 @@ export class ImageComponent {
 
   /** Falhou ao carregar? */
   protected readonly errored = signal(false);
-
-  @HostBinding('attr.data-size')
-  get hostSize(): ImageSize {
-    return this.size();
-  }
-
-  @HostBinding('attr.data-error')
-  get hostError(): '' | null {
-    return this.errored() ? '' : null;
-  }
 
   protected onError(): void {
     this.errored.set(true);

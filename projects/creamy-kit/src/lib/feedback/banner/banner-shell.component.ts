@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -43,6 +42,10 @@ import { BannerSize } from './banner-base.directive';
   `,
   styleUrl: './banner-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-size]': 'size()',
+    '[attr.data-disabled]': "disabled() ? '' : null",
+  },
 })
 export class BannerShellComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -61,11 +64,4 @@ export class BannerShellComponent {
   protected readonly iconSizePx = computed(() =>
     this.size() === 'small' ? 16 : this.size() === 'large' ? 32 : 24,
   );
-
-  @HostBinding('attr.data-size') get hostSize() {
-    return this.size();
-  }
-  @HostBinding('attr.data-disabled') get hostDisabled() {
-    return this.disabled() ? '' : null;
-  }
 }

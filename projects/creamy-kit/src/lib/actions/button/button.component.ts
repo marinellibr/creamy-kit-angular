@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
 } from '@angular/core';
 import { ThemeService } from '../../core/theme.service';
@@ -78,6 +77,10 @@ export type ButtonContrast =
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-appearance]': 'appearance()',
+    '[attr.data-contrast]': 'contrast()',
+  },
 })
 export class ButtonComponent {
   constructor(private readonly themeService: ThemeService) {}
@@ -103,14 +106,4 @@ export class ButtonComponent {
    * - `on-brand`: otimizado para uso sobre superfícies da marca.
    */
   readonly contrast = input<ButtonContrast>('default');
-
-  @HostBinding('attr.data-appearance')
-  get hostAppearance(): ButtonAppearance {
-    return this.appearance();
-  }
-
-  @HostBinding('attr.data-contrast')
-  get hostContrast(): ButtonContrast {
-    return this.contrast();
-  }
 }

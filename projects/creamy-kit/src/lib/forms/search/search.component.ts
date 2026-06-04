@@ -4,12 +4,12 @@ import {
   Component,
   computed,
   forwardRef,
-  HostBinding,
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
+import { BaseValueAccessor } from '../base-value-accessor';
 
 /**
  * Variações de estilo do Search.
@@ -27,7 +27,7 @@ export type SearchVariant = 'default' | 'on-brand';
  *
  * Comportamento:
  * - Em repouso: ícone de busca à esquerda + ícone à direita.
- * - Ao focar (digitar): o ícone da esquerda some e o da direita vira um “X”
+ * - Ao focar (digitar): o ícone da esquerda some e o da direita vira um "X"
  *   que limpa o texto.
  * - Ao clicar fora: o ícone da esquerda volta, agora com o texto digitado.
  *
@@ -46,6 +46,11 @@ export type SearchVariant = 'default' | 'on-brand';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.data-variant]': 'variant()',
+    '[attr.data-small]': "small() ? '' : null",
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
+  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -54,8 +59,10 @@ export type SearchVariant = 'default' | 'on-brand';
     },
   ],
 })
-export class SearchComponent implements ControlValueAccessor {
-  constructor(private readonly themeService: ThemeService) {}
+export class SearchComponent extends BaseValueAccessor<string> {
+  constructor(private readonly themeService: ThemeService) {
+    super();
+  }
 
   /**
    * Variação de estilo.
@@ -83,31 +90,10 @@ export class SearchComponent implements ControlValueAccessor {
   /** O campo está focado? Controla a troca de ícones. */
   protected readonly focused = signal(false);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
-
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  @HostBinding('attr.data-variant')
-  get hostVariant(): SearchVariant {
-    return this.variant();
-  }
-
-  @HostBinding('attr.data-small')
-  get hostSmall(): '' | null {
-    return this.small() ? '' : null;
-  }
-
-  @HostBinding('attr.data-disabled')
-  get hostDisabled(): '' | null {
-    return this.isDisabled() ? '' : null;
-  }
 
   protected onInput(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -132,19 +118,7 @@ export class SearchComponent implements ControlValueAccessor {
 
   // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string): void {
+  override writeValue(value: string): void {
     this.value.set(value ?? '');
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

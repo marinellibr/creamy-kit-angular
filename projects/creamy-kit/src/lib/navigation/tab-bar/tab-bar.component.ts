@@ -4,12 +4,14 @@ import {
   Component,
   computed,
   contentChildren,
+  effect,
   forwardRef,
   input,
   signal,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TabBarItemComponent } from './tab-bar-item.component';
+import { BaseValueAccessor } from '../../forms/base-value-accessor';
 
 /**
  * Componente de TabBar do Creamy Kit.
@@ -36,7 +38,7 @@ import { TabBarItemComponent } from './tab-bar-item.component';
   styleUrl: './tab-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.data-disabled]': 'isDisabled()',
+    '[attr.data-disabled]': "isDisabled() ? '' : null",
   },
   providers: [
     {
@@ -46,7 +48,7 @@ import { TabBarItemComponent } from './tab-bar-item.component';
     },
   ],
 })
-export class TabBarComponent implements ControlValueAccessor {
+export class TabBarComponent extends BaseValueAccessor<string | null> {
   /** Tab items filhos. */
   readonly items = contentChildren(TabBarItemComponent);
 
@@ -56,16 +58,18 @@ export class TabBarComponent implements ControlValueAccessor {
   /** Valor selecionado (value do TabBarItem). */
   protected value = signal<string | null>(null);
 
-  /** Disabled vindo do formulário reativo (`setDisabledState`). */
-  private readonly disabledByForm = signal(false);
-
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
     () => this.disabled() || this.disabledByForm(),
   );
 
-  protected onChange: (value: string | null) => void = () => {};
-  protected onTouched: () => void = () => {};
+  constructor() {
+    super();
+    effect(() => {
+      const current = this.value();
+      this.items().forEach(item => item.selected.set(item.value() === current));
+    });
+  }
 
   /** Seleciona um item. */
   select(item: TabBarItemComponent): void {
@@ -75,21 +79,9 @@ export class TabBarComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  /* ControlValueAccessor implementation */
+  // ControlValueAccessor -----------------------------------------------------
 
-  writeValue(value: string | null): void {
+  override writeValue(value: string | null): void {
     this.value.set(value);
-  }
-
-  registerOnChange(fn: (value: string | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabledByForm.set(isDisabled);
   }
 }

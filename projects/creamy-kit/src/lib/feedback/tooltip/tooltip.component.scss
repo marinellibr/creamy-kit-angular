@@ -1,4 +1,10 @@
 :host {
+  /* Aliases de theming — sobrescreva para dark mode / brand customisation. */
+  --kit-tooltip-bg: var(--background-variant, #f2f2f4);
+  --kit-tooltip-fg: var(--text-heading-2, #484848);
+  --kit-tooltip-bg-contrast: var(--text-heading-2, #484848);
+  --kit-tooltip-fg-contrast: var(--action-neutral-base, #f0f0f0);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -7,19 +13,19 @@
   padding: 0 8px;
   border-radius: 22px;
   box-sizing: border-box;
-  background: #f2f2f4;
-  color: #484848;
+  background: var(--kit-tooltip-bg);
+  color: var(--kit-tooltip-fg);
 }
 
 /* ----- Variantes ----- */
 :host.kit-tooltip--default {
-  background: #f2f2f4;
-  color: #484848;
+  background: var(--kit-tooltip-bg);
+  color: var(--kit-tooltip-fg);
 }
 
 :host.kit-tooltip--contrast {
-  background: #484848;
-  color: var(--action-neutral-base, #f0f0f0);
+  background: var(--kit-tooltip-bg-contrast);
+  color: var(--kit-tooltip-fg-contrast);
 }
 
 /* ----- Conteúdo interno ----- */
