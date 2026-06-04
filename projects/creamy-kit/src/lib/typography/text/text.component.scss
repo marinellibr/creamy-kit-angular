@@ -1,0 +1,130 @@
+/* Base */
+.text {
+  display: inline;
+  line-height: 1.5;
+
+  /* Cores default (Text/heading) */
+  color: var(--text-heading, #2a2a2a);
+
+  &--color-on-brand {
+    color: var(--action-primary-contrast, #ffffff);
+  }
+
+  &--color-variant {
+    color: var(--action-primary-base, #128cfe);
+  }
+}
+
+/* ===== TITLE ===== */
+.text--title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+
+  &.text--size-small {
+    font-size: 16px;
+  }
+
+  &.text--size-default {
+    font-size: 24px;
+  }
+
+  &.text--size-large {
+    font-size: 40px;
+  }
+}
+
+/* ===== SUBTITLE ===== */
+.text--subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* ===== SECTION ===== */
+.text--section {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  color: var(--text-heading, #2a2a2a);
+
+  &.text--size-small {
+    font-size: 16px;
+  }
+
+  &.text--size-default {
+    font-size: 20px;
+  }
+}
+
+/* ===== BODY ===== */
+.text--body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  color: var(--text-heading, #2a2a2a);
+
+  &.text--size-small {
+    font-size: 14px;
+  }
+
+  &.text--size-default {
+    font-size: 16px;
+  }
+
+  &.text--size-large {
+    font-size: 18px;
+  }
+
+  &.text--bold {
+    font-weight: 500;
+    color: var(--text-body-2, #6f6f6f);
+  }
+
+  &.text--color-on-brand {
+    color: var(--action-primary-contrast, #ffffff);
+
+    &.text--bold {
+      color: var(--action-primary-contrast, #ffffff);
+    }
+  }
+
+  &.text--color-variant {
+    color: var(--action-primary-base, #128cfe);
+
+    &.text--bold {
+      color: var(--action-primary-base, #128cfe);
+    }
+  }
+}
+
+/* ===== LABEL ===== */
+.text--label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+
+  &.text--size-xxsmall {
+    font-size: 10px;
+  }
+
+  &.text--size-xsmall {
+    font-size: 11px;
+  }
+
+  &.text--size-small {
+    font-size: 14px;
+  }
+
+  &.text--size-default {
+    font-size: 16px;
+  }
+
+  &.text--size-large {
+    font-size: 20px;
+  }
+
+  &.text--bold {
+    font-weight: 500;
+  }
+
+  &.text--underline {
+    text-decoration: underline;
+  }
+}

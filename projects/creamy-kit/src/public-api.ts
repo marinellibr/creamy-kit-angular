@@ -60,6 +60,7 @@ export * from './lib/data-display/shortcut/shortcut.component';
 export * from './lib/data-display/tag/tag.component';
 
 // typography
+export * from './lib/typography/text/text.component';
 export * from './lib/typography/text-link/text-link.component';
 
 // media
