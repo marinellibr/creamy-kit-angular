@@ -13,8 +13,8 @@ describe('TextComponent', () => {
 
     fixture = TestBed.createComponent(TextComponent);
     component = fixture.componentInstance;
-
-    fixture.detectChanges();
+    // `type` é um input required; o detectChanges de cada teste roda após
+    // o setInput correspondente para evitar NG0950.
   });
 
   it('should create', () => {

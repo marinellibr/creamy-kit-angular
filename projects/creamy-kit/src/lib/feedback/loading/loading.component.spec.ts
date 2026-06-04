@@ -45,9 +45,11 @@ describe('LoadingComponent', () => {
 
   it('should map size to the center icon px', () => {
     fixture.componentRef.setInput('size', 'large');
-    expect(component.iconPx()).toBe(20);
+    expect(component.iconPx()).toBe(12);
     fixture.componentRef.setInput('size', 'xsmall');
-    expect(component.iconPx()).toBe(5);
+    expect(component.iconPx()).toBe(3);
+    fixture.componentRef.setInput('size', 'xlarge');
+    expect(component.iconPx()).toBe(24);
   });
 
   it('should render 8 spokes', () => {

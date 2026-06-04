@@ -1,67 +1,50 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrandSquareComponent } from './brand-square.component';
-import { BrandService } from './brand.service';
-import { of, throwError } from 'rxjs';
+import { provideCreamyKitResources } from '../../core/resources';
 
 describe('BrandSquareComponent', () => {
-  let component: BrandSquareComponent;
   let fixture: ComponentFixture<BrandSquareComponent>;
-  let brandService: jasmine.SpyObj<BrandService>;
+  let component: BrandSquareComponent;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('BrandService', ['getBrandSvg']);
-
     await TestBed.configureTestingModule({
       imports: [BrandSquareComponent],
-      providers: [{ provide: BrandService, useValue: spy }]
     }).compileComponents();
 
-    brandService = TestBed.inject(BrandService) as jasmine.SpyObj<BrandService>;
     fixture = TestBed.createComponent(BrandSquareComponent);
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('cria o componente', () => {
+    fixture.componentRef.setInput('brandName', 'visa');
     expect(component).toBeTruthy();
   });
 
-  it('should load brand SVG on init', () => {
-    const mockSvg = '<svg></svg>';
-    brandService.getBrandSvg.and.returnValue(of(mockSvg));
-
-    component.brandName = 'visa';
-    fixture.detectChanges();
-
-    expect(brandService.getBrandSvg).toHaveBeenCalledWith('visa', 'square', 'medium');
-    expect(component.isLoading).toBeFalsy();
+  it('monta a URL square com o tamanho default (medium)', () => {
+    fixture.componentRef.setInput('brandName', 'visa');
+    expect(component.brandUrl()).toContain('/visa_square_medium.svg');
   });
 
-  it('should handle different sizes', () => {
-    const mockSvg = '<svg></svg>';
-    brandService.getBrandSvg.and.returnValue(of(mockSvg));
-
-    component.brandName = 'visa';
-    component.size = 'large';
-    fixture.detectChanges();
-
-    expect(brandService.getBrandSvg).toHaveBeenCalledWith('visa', 'square', 'large');
+  it('reflete o size no nome do arquivo', () => {
+    fixture.componentRef.setInput('brandName', 'visa');
+    fixture.componentRef.setInput('size', 'large');
+    expect(component.brandUrl()).toContain('/visa_square_large.svg');
   });
 
-  it('should show error when brand name is missing', () => {
-    component.brandName = '';
-    fixture.detectChanges();
-
-    expect(component.error).toBe('Brand name is required');
-    expect(component.isLoading).toBeFalsy();
+  it('slugifica nomes com espaços', () => {
+    fixture.componentRef.setInput('brandName', 'Banco Inter');
+    expect(component.brandUrl()).toContain('/banco_inter_square_medium.svg');
   });
 
-  it('should handle load errors', () => {
-    brandService.getBrandSvg.and.returnValue(throwError(() => new Error('Load failed')));
+  it('usa a base URL configurada via provideCreamyKitResources', async () => {
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({
+      imports: [BrandSquareComponent],
+      providers: [provideCreamyKitResources({ brandsBaseUrl: '/assets/brands' })],
+    }).compileComponents();
 
-    component.brandName = 'invalid';
-    fixture.detectChanges();
-
-    expect(component.error).toContain('Failed to load brand');
-    expect(component.isLoading).toBeFalsy();
+    const f = TestBed.createComponent(BrandSquareComponent);
+    f.componentRef.setInput('brandName', 'visa');
+    expect(f.componentInstance.brandUrl()).toBe('/assets/brands/visa_square_medium.svg');
   });
 });

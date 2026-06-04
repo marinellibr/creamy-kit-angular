@@ -23,13 +23,13 @@ describe('SwitchComponent', () => {
 
   it('should toggle value on click', () => {
     const button = fixture.nativeElement.querySelector('.switch');
-    expect(component['value']).toBe(false);
+    expect(component['value']()).toBe(false);
 
     button.click();
-    expect(component['value']).toBe(true);
+    expect(component['value']()).toBe(true);
 
     button.click();
-    expect(component['value']).toBe(false);
+    expect(component['value']()).toBe(false);
   });
 
   it('should have switch--on class when value is true', () => {
@@ -69,5 +69,35 @@ describe('SwitchComponent', () => {
     button.click();
     fixture.detectChanges();
     expect(button.getAttribute('aria-checked')).toBe('true');
+  });
+
+  it('reflete writeValue na UI (OnPush)', () => {
+    component.writeValue(true);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('.switch');
+    expect(button.classList.contains('switch--on')).toBe(true);
+  });
+
+  describe('disabled', () => {
+    it('não alterna por clique quando [disabled]', () => {
+      fixture.componentRef.setInput('disabled', true);
+      fixture.detectChanges();
+
+      const button: HTMLButtonElement =
+        fixture.nativeElement.querySelector('.switch');
+      expect(button.disabled).toBeTrue();
+
+      component.toggle();
+      expect(component['value']()).toBeFalse();
+    });
+
+    it('setDisabledState(true) bloqueia a interação', () => {
+      component.setDisabledState(true);
+      fixture.detectChanges();
+
+      expect(component.isDisabled()).toBeTrue();
+      component.toggle();
+      expect(component['value']()).toBeFalse();
+    });
   });
 });
