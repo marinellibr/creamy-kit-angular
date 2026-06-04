@@ -5,21 +5,21 @@
   width: 100%;
   height: 44px;
   padding: 0 8px;
-  border-radius: 50%;
+  border-radius: 22px;
   box-sizing: border-box;
   background: var(--action-neutral-base, #f0f0f0);
-  color: var(--text-on-brand, #128cfe);
+  color: var(--text-body-1, #333333);
 }
 
 /* ----- Variantes ----- */
 :host.kit-tooltip--default {
   background: var(--action-neutral-base, #f0f0f0);
-  color: var(--text-on-brand, #128cfe);
+  color: var(--text-body-1, #333333);
 }
 
 :host.kit-tooltip--contrast {
   background: var(--background-variant-contrast, #ffffff);
-  color: var(--text-default, #333333);
+  color: var(--text-body-1, #333333);
 }
 
 /* ----- Conteúdo interno ----- */
