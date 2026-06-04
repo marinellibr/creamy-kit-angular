@@ -7,18 +7,18 @@
   padding: 0 8px;
   border-radius: 22px;
   box-sizing: border-box;
-  background: var(--action-neutral-base, #f0f0f0);
-  color: var(--action-primary-contrast, #128cfe);
+  background: #f2f2f4;
+  color: #484848;
 }
 
 /* ----- Variantes ----- */
 :host.kit-tooltip--default {
-  background: var(--action-neutral-base, #f0f0f0);
+  background: #f2f2f4;
   color: #484848;
 }
 
 :host.kit-tooltip--contrast {
-  background: var(--background-variant, #ffffff);
+  background: #484848;
   color: var(--action-neutral-base, #f0f0f0);
 }
 
