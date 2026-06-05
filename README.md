@@ -12,6 +12,8 @@ consumidos do repositório de recursos
 
 > Angular **18.2** · componentes standalone · `ChangeDetectionStrategy.OnPush`.
 
+📄 **[Documentação completa dos componentes →](./DOCUMENTATION.md)**
+
 ---
 
 ## Instalação
