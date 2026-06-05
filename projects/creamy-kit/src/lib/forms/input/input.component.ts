@@ -10,6 +10,9 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { BaseValueAccessor } from '../base-value-accessor';
+import { FieldErrorIconComponent } from '../field-error-icon/field-error-icon.component';
+
+let nextId = 0;
 
 /**
  * Variações de estilo do Input.
@@ -38,7 +41,7 @@ export type InputVariant = 'default';
 @Component({
   selector: 'creamy-kit-input',
   standalone: true,
-  imports: [],
+  imports: [FieldErrorIconComponent],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,6 +62,9 @@ export class InputComponent extends BaseValueAccessor<string> {
   constructor(private readonly themeService: ThemeService) {
     super();
   }
+
+  /** ID único para associar o label ao input via `for`/`id`. */
+  protected readonly uid = `kit-input-${nextId++}`;
 
   /**
    * Variação de estilo.

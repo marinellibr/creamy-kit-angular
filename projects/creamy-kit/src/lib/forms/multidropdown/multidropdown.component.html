@@ -1,12 +1,13 @@
 <div class="multidropdown">
   @if (title()) {
-    <span class="multidropdown__title">{{ title() }}</span>
+    <label class="multidropdown__title" [for]="uid">{{ title() }}</label>
   }
 
   <div class="multidropdown__field">
     <button
       type="button"
       class="multidropdown__control"
+      [id]="uid"
       [disabled]="isDisabled()"
       (click)="toggleMenu()"
       aria-haspopup="listbox"
@@ -52,18 +53,7 @@
   @if (helper()) {
     <span class="multidropdown__helper">
       @if (error()) {
-        <svg
-          class="multidropdown__helper-icon"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          aria-hidden="true"
-        >
-          <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5" />
-          <path d="M8 5v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-          <circle cx="8" cy="11" r="0.9" fill="currentColor" />
-        </svg>
+        <creamy-kit-field-error-icon class="multidropdown__helper-icon" />
       }
       {{ helper() }}
     </span>

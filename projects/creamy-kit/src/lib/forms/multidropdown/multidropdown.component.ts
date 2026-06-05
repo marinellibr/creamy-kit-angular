@@ -14,6 +14,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { DropdownOption } from '../dropdown/dropdown.component';
 import { BaseValueAccessor } from '../base-value-accessor';
+import { FieldErrorIconComponent } from '../field-error-icon/field-error-icon.component';
+
+let nextId = 0;
 
 /**
  * Variações de estilo do MultiDropdown.
@@ -42,7 +45,7 @@ export type MultiDropdownVariant = 'default';
 @Component({
   selector: 'creamy-kit-multidropdown',
   standalone: true,
-  imports: [],
+  imports: [FieldErrorIconComponent],
   templateUrl: './multidropdown.component.html',
   styleUrl: './multidropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,6 +69,8 @@ export class MultiDropdownComponent extends BaseValueAccessor<string[]> {
   constructor(private readonly themeService: ThemeService) {
     super();
   }
+
+  protected readonly uid = `kit-multidropdown-${nextId++}`;
 
   /**
    * Variação de estilo.

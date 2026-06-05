@@ -8,6 +8,12 @@ import { ThemeService } from '../../core/theme.service';
 import { IconComponent } from '../../media/icon/icon.component';
 import { BannerSize } from './banner-base.directive';
 
+const BANNER_ICON_PX: Record<BannerSize, number> = {
+  small: 16,
+  medium: 24,
+  large: 32,
+};
+
 /**
  * Casca (shell) compartilhada das variações de Banner.
  *
@@ -61,7 +67,5 @@ export class BannerShellComponent {
     this.disabled() ? 'var(--disabled-variant)' : `var(${this.iconColor()})`,
   );
 
-  protected readonly iconSizePx = computed(() =>
-    this.size() === 'small' ? 16 : this.size() === 'large' ? 32 : 24,
-  );
+  protected readonly iconSizePx = computed(() => BANNER_ICON_PX[this.size()]);
 }

@@ -10,6 +10,9 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { BaseValueAccessor } from '../base-value-accessor';
+import { FieldErrorIconComponent } from '../field-error-icon/field-error-icon.component';
+
+let nextId = 0;
 
 /**
  * Variações de estilo do Password.
@@ -38,7 +41,7 @@ export type PasswordVariant = 'default' | 'on-brand';
 @Component({
   selector: 'creamy-kit-password',
   standalone: true,
-  imports: [],
+  imports: [FieldErrorIconComponent],
   templateUrl: './password.component.html',
   styleUrl: './password.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +63,8 @@ export class PasswordComponent extends BaseValueAccessor<string> {
   constructor(private readonly themeService: ThemeService) {
     super();
   }
+
+  protected readonly uid = `kit-password-${nextId++}`;
 
   /**
    * Variação de estilo.

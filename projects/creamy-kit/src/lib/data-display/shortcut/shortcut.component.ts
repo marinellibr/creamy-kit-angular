@@ -4,7 +4,6 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ThemeService } from '../../core/theme.service';
 import { IconComponent } from '../../media/icon/icon.component';
 
 /**
@@ -32,13 +31,11 @@ import { IconComponent } from '../../media/icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShortcutComponent {
-  constructor(private readonly themeService: ThemeService) {}
-
   /** Nome do ícone (em `creamy-kit-resources/icons`, sem extensão). */
-  readonly iconName = input<string>('');
+  readonly iconName = input.required<string>();
 
   /** Rótulo exibido abaixo do ícone. */
-  readonly label = input<string>('');
+  readonly label = input.required<string>();
 
   /** Emitido ao clicar no atalho. */
   readonly pressed = output<void>();

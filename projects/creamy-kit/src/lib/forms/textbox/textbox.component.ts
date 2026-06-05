@@ -11,6 +11,9 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { BaseValueAccessor } from '../base-value-accessor';
+import { FieldErrorIconComponent } from '../field-error-icon/field-error-icon.component';
+
+let nextId = 0;
 
 /**
  * Variações de estilo do Textbox.
@@ -39,7 +42,7 @@ export type TextboxVariant = 'default' | 'on-brand';
 @Component({
   selector: 'creamy-kit-textbox',
   standalone: true,
-  imports: [],
+  imports: [FieldErrorIconComponent],
   templateUrl: './textbox.component.html',
   styleUrl: './textbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +63,8 @@ export class TextboxComponent extends BaseValueAccessor<string> {
   constructor(private readonly themeService: ThemeService) {
     super();
   }
+
+  protected readonly uid = `kit-textbox-${nextId++}`;
 
   /**
    * Variação de estilo.

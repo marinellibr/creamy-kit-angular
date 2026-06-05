@@ -12,6 +12,7 @@ export * from './lib/actions/button/button.component';
 
 // forms
 export * from './lib/forms/base-value-accessor';
+export * from './lib/forms/field-error-icon/field-error-icon.component';
 export * from './lib/forms/input/input.component';
 export * from './lib/forms/textbox/textbox.component';
 export * from './lib/forms/password/password.component';
