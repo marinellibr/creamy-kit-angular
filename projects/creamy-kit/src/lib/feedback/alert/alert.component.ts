@@ -40,7 +40,7 @@ export type AlertFeedback = 'information' | 'success' | 'error';
   styleUrl: './alert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'attr.role': 'alert',
+    role: 'alert',
     '[attr.data-feedback]': 'feedback()',
   },
 })

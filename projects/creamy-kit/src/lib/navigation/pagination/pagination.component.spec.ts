@@ -13,7 +13,6 @@ describe('PaginationComponent', () => {
 
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
   });
 

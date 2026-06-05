@@ -20,4 +20,8 @@ describe('ProgressComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render without errors', () => {
+    expect(fixture.nativeElement).not.toBeNull();
+  });
 });

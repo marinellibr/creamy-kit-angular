@@ -68,7 +68,7 @@ export class TabBarComponent extends BaseValueAccessor<string | null> {
     effect(() => {
       const current = this.value();
       this.items().forEach(item => item.selected.set(item.value() === current));
-    });
+    }, { allowSignalWrites: true });
   }
 
   /** Seleciona um item. */
