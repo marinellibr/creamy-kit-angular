@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CodeComponent } from './code.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('CodeComponent', () => {
   let component: CodeComponent;
@@ -581,4 +582,21 @@ describe('CodeComponent', () => {
     component.setDisabledState(true);
     expect(component.isDisabled()).toBe(true);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
+  it('onPaste handles null clipboardData (covers ?? branch)', () => {
+    component.writeValue('123456');
+    const event = {
+      preventDefault: jest.fn(),
+      clipboardData: null,
+    } as unknown as ClipboardEvent;
+    (component as any).onPaste(event);
+    // early-return: chars unchanged because text is '' after trim
+    expect((component as any).chars()).toEqual(['1', '2', '3', '4', '5', '6']);
+  });
+
 });

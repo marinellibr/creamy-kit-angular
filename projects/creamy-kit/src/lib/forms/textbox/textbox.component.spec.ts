@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextboxComponent } from './textbox.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('TextboxComponent', () => {
   let component: TextboxComponent;
@@ -431,4 +432,10 @@ describe('TextboxComponent', () => {
     fixture.detectChanges();
     expect(component['isDisabled']()).toBe(true);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

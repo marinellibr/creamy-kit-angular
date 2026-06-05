@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CheckboxComponent, CheckboxOption } from './checkbox.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const OPTIONS: CheckboxOption[] = [
   { label: 'Option A', value: 'a' },
@@ -346,4 +347,10 @@ describe('CheckboxComponent', () => {
     component.setDisabledState(false);
     expect(component['disabledByForm']()).toBe(false);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

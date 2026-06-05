@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PasswordComponent } from './password.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('PasswordComponent', () => {
   let component: PasswordComponent;
@@ -449,4 +450,10 @@ describe('PasswordComponent', () => {
     const input = nativeEl.querySelector('input.password__input') as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './date-picker.component';
 import { CalendarComponent } from '../calendar/calendar.component';
@@ -291,4 +292,10 @@ describe('DatePickerComponent', () => {
       expect((component as any).isDisabled()).toBe(true);
     });
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

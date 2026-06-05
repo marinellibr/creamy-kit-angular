@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchComponent } from './search.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -419,4 +420,10 @@ describe('SearchComponent', () => {
     const input = nativeEl.querySelector('input.search__input') as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

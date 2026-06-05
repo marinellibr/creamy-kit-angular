@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DropdownComponent, DropdownOption } from './dropdown.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const OPTIONS: DropdownOption[] = [
   { label: 'Option A', value: 'a' },
@@ -327,4 +328,10 @@ describe('DropdownComponent', () => {
       expect((component as any).isDisabled()).toBe(true);
     });
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

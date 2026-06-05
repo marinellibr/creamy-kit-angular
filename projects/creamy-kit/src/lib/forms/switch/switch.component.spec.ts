@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SwitchComponent } from './switch.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('SwitchComponent', () => {
   let component: SwitchComponent;
@@ -317,4 +318,10 @@ describe('SwitchComponent', () => {
     const btn = nativeEl.querySelector('button.switch') as HTMLButtonElement;
     expect(btn.disabled).toBe(true);
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

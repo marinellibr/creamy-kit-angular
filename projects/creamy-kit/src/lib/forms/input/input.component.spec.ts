@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputComponent } from './input.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 describe('InputComponent', () => {
   let component: InputComponent;
@@ -102,4 +103,10 @@ describe('InputComponent', () => {
     const icon = fixture.nativeElement.querySelector('.field__helper-icon');
     expect(icon).toBeTruthy();
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

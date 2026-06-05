@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RadioComponent, RadioOption } from './radio.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const OPTIONS: RadioOption[] = [
   { label: 'Option A', value: 'a' },
@@ -352,4 +353,10 @@ describe('RadioComponent', () => {
       expect(row.disabled).toBe(true);
     });
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });

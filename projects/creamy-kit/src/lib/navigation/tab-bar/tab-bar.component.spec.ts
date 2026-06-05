@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { CREAMY_KIT_RESOURCES } from '../../core/resources';
 import { TabBarComponent } from './tab-bar.component';
@@ -102,5 +103,11 @@ describe('TabBarComponent', () => {
     const items = (tabBar as unknown as { items: () => TabBarItemComponent[] }).items();
     expect(items[0].selected()).toBe(false);
     expect(items[1].selected()).toBe(true);
+  });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const tabBarEl = hostFixture.debugElement.children[0];
+    const accessor = tabBarEl.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
   });
 });

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MultiDropdownComponent } from './multidropdown.component';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DropdownOption } from '../dropdown/dropdown.component';
 
 const OPTIONS: DropdownOption[] = [
@@ -374,4 +375,10 @@ describe('MultiDropdownComponent', () => {
       expect((component as any).isDisabled()).toBe(true);
     });
   });
+
+  it('provides itself as NG_VALUE_ACCESSOR via forwardRef', () => {
+    const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
+    expect(accessor).toBeTruthy();
+  });
+
 });
