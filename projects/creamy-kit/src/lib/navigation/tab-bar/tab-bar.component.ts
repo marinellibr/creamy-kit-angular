@@ -52,6 +52,9 @@ export class TabBarComponent extends BaseValueAccessor<string | null> {
   /** Tab items filhos. */
   readonly items = contentChildren(TabBarItemComponent);
 
+  /** Rótulo acessível do elemento nav. @default 'Navegação' */
+  readonly ariaLabel = input<string>('Navegação');
+
   /** Desabilita a barra inteira. @default false */
   readonly disabled = input(false, { transform: booleanAttribute });
 
@@ -65,6 +68,9 @@ export class TabBarComponent extends BaseValueAccessor<string | null> {
 
   constructor() {
     super();
+    // Mantém item.selected em sync com o valor controlado. O efeito rastreia
+    // tanto value() quanto items() para cobrir writeValue() chamado antes do
+    // conteúdo projetado estar disponível.
     effect(() => {
       const current = this.value();
       this.items().forEach(item => item.selected.set(item.value() === current));

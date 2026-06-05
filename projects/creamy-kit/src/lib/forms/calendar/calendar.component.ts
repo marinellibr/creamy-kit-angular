@@ -76,6 +76,12 @@ export class CalendarComponent extends BaseValueAccessor<Date | null> {
   /** Desabilita o calendário (sem navegação nem seleção). @default false */
   readonly disabled = input(false, { transform: booleanAttribute });
 
+  /**
+   * Locale BCP 47 usado para formatar nomes de meses e datas.
+   * @default 'pt-BR'
+   */
+  readonly locale = input<string>('pt-BR');
+
   /** Emitido ao selecionar um dia. */
   readonly dateChange = output<Date>();
 
@@ -96,7 +102,7 @@ export class CalendarComponent extends BaseValueAccessor<Date | null> {
   /** Rótulo do mês exibido, ex.: "Fevereiro de 2026". */
   protected readonly monthLabel = computed(() => {
     const d = this.view();
-    const m = monthName(d);
+    const m = monthName(d, this.locale());
     return `${m.charAt(0).toUpperCase()}${m.slice(1)} de ${d.getFullYear()}`;
   });
 
@@ -127,7 +133,7 @@ export class CalendarComponent extends BaseValueAccessor<Date | null> {
     const v = this.footerValue();
     if (v === 'auto') {
       const s = this.selected();
-      return s ? formatFull(s) : '';
+      return s ? formatFull(s, this.locale()) : '';
     }
     return v;
   });
@@ -187,11 +193,11 @@ function startOfMonth(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), 1);
 }
 
-function monthName(date: Date): string {
-  return new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(date);
+function monthName(date: Date, locale: string): string {
+  return new Intl.DateTimeFormat(locale, { month: 'long' }).format(date);
 }
 
-function formatFull(date: Date): string {
+function formatFull(date: Date, locale: string): string {
   const day = String(date.getDate()).padStart(2, '0');
-  return `${day} de ${monthName(date)} de ${date.getFullYear()}`;
+  return `${day} de ${monthName(date, locale)} de ${date.getFullYear()}`;
 }

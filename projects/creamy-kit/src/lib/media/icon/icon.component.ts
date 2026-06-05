@@ -34,7 +34,7 @@ import { CREAMY_KIT_RESOURCES } from '../../core/resources';
   template: `
     <span
       class="kit-icon__mask"
-      [attr.role]="'img'"
+      role="img"
       [attr.aria-label]="ariaLabel() ?? name()"
       [style.background-color]="color()"
       [style.width.px]="size()"

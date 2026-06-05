@@ -48,8 +48,8 @@ describe('RadioComponent', () => {
     expect(component.disabled()).toBe(false);
   });
 
-  it('should have default value null (plain field)', () => {
-    expect(component['value']).toBeNull();
+  it('should have default value null (signal)', () => {
+    expect(component['value']()).toBeNull();
   });
 
   // ---------------------------------------------------------------------------
@@ -189,8 +189,8 @@ describe('RadioComponent', () => {
     expect(component.isSelected({ label: 'B', value: 'b' })).toBe(false);
   });
 
-  it('isSelected() uses plain value field (not a signal)', () => {
-    component['value'] = 'c';
+  it('isSelected() reads from signal', () => {
+    component['value'].set('c');
     expect(component.isSelected({ label: 'C', value: 'c' })).toBe(true);
     expect(component.isSelected({ label: 'A', value: 'a' })).toBe(false);
   });
@@ -199,15 +199,15 @@ describe('RadioComponent', () => {
   // select()
   // ---------------------------------------------------------------------------
 
-  it('select() should set the value field to the option value', () => {
+  it('select() should set the value signal to the option value', () => {
     component.select({ label: 'A', value: 'a' });
-    expect(component['value']).toBe('a');
+    expect(component['value']()).toBe('a');
   });
 
   it('select() should update selection to the new option', () => {
     component.select({ label: 'A', value: 'a' });
     component.select({ label: 'B', value: 'b' });
-    expect(component['value']).toBe('b');
+    expect(component['value']()).toBe('b');
   });
 
   it('select() should call onChange with the option value', () => {
@@ -229,13 +229,13 @@ describe('RadioComponent', () => {
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
     component.select({ label: 'A', value: 'a' });
-    expect(component['value']).toBeNull();
+    expect(component['value']()).toBeNull();
   });
 
   it('select() when disabled via setDisabledState should do nothing', () => {
     component.setDisabledState(true);
     component.select({ label: 'B', value: 'b' });
-    expect(component['value']).toBeNull();
+    expect(component['value']()).toBeNull();
   });
 
   it('select() when disabled should not call onChange', () => {
@@ -260,7 +260,7 @@ describe('RadioComponent', () => {
     fixture.detectChanges();
     const rows = nativeEl.querySelectorAll<HTMLButtonElement>('.radio__row');
     rows[2].click();
-    expect(component['value']).toBe('c');
+    expect(component['value']()).toBe('c');
   });
 
   it('clicking a second row should update the selection', () => {
@@ -269,7 +269,7 @@ describe('RadioComponent', () => {
     const rows = nativeEl.querySelectorAll<HTMLButtonElement>('.radio__row');
     rows[0].click();
     rows[1].click();
-    expect(component['value']).toBe('b');
+    expect(component['value']()).toBe('b');
   });
 
   it('clicking a row updates aria-checked in DOM', () => {
@@ -286,15 +286,15 @@ describe('RadioComponent', () => {
   // writeValue
   // ---------------------------------------------------------------------------
 
-  it('writeValue stores the value in plain field', () => {
+  it('writeValue stores the value in signal', () => {
     component.writeValue('test');
-    expect(component['value']).toBe('test');
+    expect(component['value']()).toBe('test');
   });
 
   it('writeValue(null) stores null', () => {
     component.writeValue('a');
     component.writeValue(null);
-    expect(component['value']).toBeNull();
+    expect(component['value']()).toBeNull();
   });
 
   it('writeValue should reflect in DOM after detectChanges', () => {
@@ -358,5 +358,4 @@ describe('RadioComponent', () => {
     const accessor = fixture.debugElement.injector.get(NG_VALUE_ACCESSOR);
     expect(accessor).toBeTruthy();
   });
-
 });

@@ -31,10 +31,10 @@ import { AvatarContrast, AvatarSize } from './avatar.types';
 })
 export class AvatarImageComponent {
   /** URL da imagem. */
-  readonly src = input<string>('');
+  readonly src = input.required<string>();
 
-  /** Texto alternativo. */
-  readonly alt = input<string>('');
+  /** Texto alternativo acessível. */
+  readonly alt = input.required<string>();
 
   /** Tamanho do avatar. @default 'medium' */
   readonly size = input<AvatarSize>('medium');

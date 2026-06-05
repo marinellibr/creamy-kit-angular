@@ -64,7 +64,7 @@ export class RadioComponent extends BaseValueAccessor<string | null> {
   readonly disabled = input(false, { transform: booleanAttribute });
 
   /** Valor selecionado (string). */
-  protected value: string | null = null;
+  protected readonly value = signal<string | null>(null);
 
   /** Estado final de disabled (input OU formulário). */
   readonly isDisabled = computed(
@@ -73,20 +73,20 @@ export class RadioComponent extends BaseValueAccessor<string | null> {
 
   /** Verifica se uma opção está selecionada. */
   isSelected(opt: RadioOption): boolean {
-    return this.value === opt.value;
+    return this.value() === opt.value;
   }
 
   /** Seleciona uma opção. */
   select(opt: RadioOption): void {
     if (this.isDisabled()) return;
-    this.value = opt.value;
-    this.onChange(this.value);
+    this.value.set(opt.value);
+    this.onChange(this.value());
     this.onTouched();
   }
 
   // ControlValueAccessor -----------------------------------------------------
 
   override writeValue(value: string | null): void {
-    this.value = value;
+    this.value.set(value);
   }
 }

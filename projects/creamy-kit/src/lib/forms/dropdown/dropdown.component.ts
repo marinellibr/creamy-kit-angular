@@ -13,6 +13,9 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeService } from '../../core/theme.service';
 import { BaseValueAccessor } from '../base-value-accessor';
+import { FieldErrorIconComponent } from '../field-error-icon/field-error-icon.component';
+
+let nextId = 0;
 
 /**
  * Opção exibida pelo Dropdown.
@@ -48,7 +51,7 @@ export type DropdownVariant = 'default' | 'on-brand';
 @Component({
   selector: 'creamy-kit-dropdown',
   standalone: true,
-  imports: [],
+  imports: [FieldErrorIconComponent],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,6 +75,8 @@ export class DropdownComponent extends BaseValueAccessor<string> {
   constructor(private readonly themeService: ThemeService) {
     super();
   }
+
+  protected readonly uid = `kit-dropdown-${nextId++}`;
 
   /**
    * Variação de estilo.

@@ -13,6 +13,8 @@ describe('AvatarImageComponent', () => {
 
     fixture = TestBed.createComponent(AvatarImageComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('src', '');
+    fixture.componentRef.setInput('alt', '');
     fixture.detectChanges();
   });
 
@@ -40,12 +42,12 @@ describe('AvatarImageComponent', () => {
       expect(img.getAttribute('alt')).toBe('Luiz');
     });
 
-    it('defaults src to empty string', () => {
+    it('renders an empty src when initialized with empty string', () => {
       const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
       expect(img.getAttribute('src')).toBe('');
     });
 
-    it('defaults alt to empty string', () => {
+    it('renders an empty alt when initialized with empty string', () => {
       const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
       expect(img.getAttribute('alt')).toBe('');
     });
