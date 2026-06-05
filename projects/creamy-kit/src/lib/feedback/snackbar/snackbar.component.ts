@@ -38,7 +38,7 @@ export type SnackbarFeedback =
   styleUrl: './snackbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'attr.role': 'status',
+    role: 'status',
     '[attr.data-feedback]': 'feedback()',
   },
 })
