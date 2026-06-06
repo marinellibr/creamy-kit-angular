@@ -14,7 +14,7 @@
       "prefix": "kit",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "project": "projects/creamy-kit/ng-package.json"
           },
@@ -29,7 +29,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:jest",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/creamy-kit/tsconfig.spec.json"
           }
