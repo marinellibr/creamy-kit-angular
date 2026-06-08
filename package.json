@@ -15,13 +15,11 @@
   },
   "main": "dist/creamy-kit/fesm2022/creamy-kit.mjs",
   "module": "dist/creamy-kit/fesm2022/creamy-kit.mjs",
-  "typings": "dist/creamy-kit/index.d.ts",
+  "typings": "dist/creamy-kit/types/creamy-kit.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/creamy-kit/index.d.ts",
-      "esm2022": "./dist/creamy-kit/esm2022/creamy-kit.mjs",
-      "esm": "./dist/creamy-kit/esm2022/creamy-kit.mjs",
+      "types": "./dist/creamy-kit/types/creamy-kit.d.ts",
       "default": "./dist/creamy-kit/fesm2022/creamy-kit.mjs"
     },
     "./styles": {
