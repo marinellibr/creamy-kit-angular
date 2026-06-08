@@ -1,6 +1,9 @@
 {
   "name": "creamy-kit",
   "version": "0.0.1",
+  "files": [
+    "dist/creamy-kit"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
